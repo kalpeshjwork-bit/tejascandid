@@ -91,7 +91,7 @@ img {
     /* Leave space for margins */
     margin: 20px auto;
     /* Center with margin */
-    background-image: url('assets/img/hero.avif');
+    background-image: url('../img/hero.avif');
     /* Initial background */
     background-size: cover;
     background-position: center;
