@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Creative Photography</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header / Hero Section -->
+    <header class="hero-section">
+        <div class="hero-corners">
+            <div class="corner-tl"></div>
+            <div class="corner-tr"></div>
+            <div class="corner-bl"></div>
+            <div class="corner-br"></div>
+        </div>
+
+        <div class="overlay"></div>
+        <div class="container hero-container">
+            <nav class="navbar" id="navbar">
+                <div class="nav-pill" id="navPill">
+                    <div class="nav-header">
+                        <div class="brand-logo">Tejas</div>
+                        <button class="hamburger" id="menuToggle" aria-label="Toggle menu">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                    </div>
+                    <ul class="nav-links" id="navLinks">
+                        <li><a href="#" class="active">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Service</a></li>
+                        <li><a href="#">Portfolio</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                    <div class="nav-btn-wrapper">
+                        <a href="#" class="btn-chat">Chat now <span class="arrow">↗</span></a>
+                    </div>
+                </div>
+            </nav>
+
+            <script>
+                const menuToggle = document.getElementById('menuToggle');
+                const navPill = document.getElementById('navPill');
+
+                menuToggle.addEventListener('click', () => {
+                    navPill.classList.toggle('expanded');
+                    menuToggle.classList.toggle('active');
+                });
+            </script>
+
+            <div class="hero-content">
+                <div class="hero-text-wrapper">
+                    <span class="brand-subtitle">Est. 2024 <span class="rec-dot"></span></span>
+                    <h1 class="hero-title blur-reveal">Professional Creative <br> Photography</h1>
+
+                    <div class="hero-badge-left">
+                        <img src="assets/img/cam-icon.svg" alt="Camera" class="cam-icon rotating">
+                    </div>
+
+                    <p class="hero-desc blur-reveal">Capturing moments with natural light and creative perspective.</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- About / Intro Section -->
+        <section class="about-section">
+            <div class="container">
+                <div class="about-text-wrapper">
+                    <div class="star-rating">
+                        <!-- 5 Stars -->
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                            </path>
+                        </svg>
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                            </path>
+                        </svg>
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                            </path>
+                        </svg>
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                            </path>
+                        </svg>
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                            </path>
+                        </svg>
+                    </div>
+
+                    <h2 class="about-title blur-reveal">Every image tells a story, capturing moments with a seamless
+                        blend of art and emotion.</h2>
+
+                    <div class="author-block">
+                        <span class="author-name blur-reveal">Tejas</span>
+                        <span class="author-role blur-reveal">Founder / Photographer</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Work With Me Section -->
+        <section class="features-section">
+            <div class="container">
+                <div class="features-header">
+                    <span class="section-badge">Features</span>
+                    <h3 class="features-title">Why work with me?</h3>
+                    <p class="features-subtitle">Giving you the best shot</p>
+                </div>
+
+                <div class="features-grid">
+
+                    <!-- Feature 1 -->
+                    <div class="feature-card reveal stagger-delay-1">
+                        <div class="feature-icon">
+                            <!-- Sun/Vision Icon -->
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5">
+                                <circle cx="12" cy="12" r="5"></circle>
+                                <path
+                                    d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42">
+                                </path>
+                            </svg>
+                        </div>
+
+                        <h4 class="feature-name">Tailored to Your Vision</h4>
+                        <p class="feature-desc">Custom approach to every project your story, your style.</p>
+                        <span class="feature-tag">Visionary Image Creation</span>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="feature-card reveal stagger-delay-2">
+                        <div class="feature-icon">
+                            <!-- Focus/Gear Icon -->
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5">
+                                <circle cx="12" cy="12" r="3"></circle>
+                                <path d="M12 2a10 10 0 0 0-10 10c0 1.33.27 2.6.76 3.76"></path>
+                                <path d="M12 22a10 10 0 0 1-10-10"></path>
+                                <path d="M22 12a10 10 0 0 0-10-10"></path>
+                                <path d="M22 12a10 10 0 0 1-10 10c0-1.33-.27-2.6-.76-3.76"></path>
+                            </svg>
+                        </div>
+
+                        <h4 class="feature-name">Shot with Top Gear</h4>
+                        <p class="feature-desc">Utilizing top-tier equipment for exceptional photos.</p>
+                        <span class="feature-tag">High-Quality Imagery</span>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="feature-card reveal stagger-delay-3">
+                        <div class="feature-icon">
+                            <!-- Pin/Editing Icon -->
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5">
+                                <line x1="12" y1="17" x2="12" y2="22"></line>
+                                <path
+                                    d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z">
+                                </path>
+                            </svg>
+                        </div>
+
+                        <h4 class="feature-name">Editing Included</h4>
+                        <p class="feature-desc">Every image is meticulously edited to align with your unique vision.</p>
+                        <span class="feature-tag">Professional editing</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Portfolio Section -->
+        <section class="portfolio-section">
+            <div class="container">
+                <div class="section-header center-text">
+                    <span class="section-badge">Work</span>
+                    <h2 class="section-title">A unique imaginary <br> perspective</h2>
+                    <p class="section-desc">Visual stories that speak for themselves</p>
+                </div>
+
+                <div class="portfolio-grid">
+                    <!-- Item 1 -->
+                    <div class="portfolio-item reveal">
+                        <div class="portfolio-img-wrapper">
+                            <img src="assets/img/shoe.avif" alt="Product Photography">
+                            <div class="corner-frame">
+                                <div class="corner-tl"></div>
+                                <div class="corner-tr"></div>
+                                <div class="corner-bl"></div>
+                                <div class="corner-br"></div>
+                            </div>
+                            <div class="overlay-icon">↗</div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h4 class="portfolio-title">Product Shoot</h4>
+                            <p class="portfolio-cat">Commercial / Brand</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="portfolio-item reveal stagger-delay-1">
+                        <div class="portfolio-img-wrapper">
+                            <img src="assets/img/mann.avif" alt="Portrait Photography">
+                            <div class="corner-frame">
+                                <div class="corner-tl"></div>
+                                <div class="corner-tr"></div>
+                                <div class="corner-bl"></div>
+                                <div class="corner-br"></div>
+                            </div>
+                            <div class="overlay-icon">↗</div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h4 class="portfolio-title">Portrait Mood</h4>
+                            <p class="portfolio-cat">Editorial / Art</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="portfolio-item reveal stagger-delay-2">
+                        <div class="portfolio-img-wrapper">
+                            <img src="assets/img/hero-mini.avif" alt="Abstract Photography"
+                                style="object-fit: cover; height: 100%;">
+                            <div class="corner-frame">
+                                <div class="corner-tl"></div>
+                                <div class="corner-tr"></div>
+                                <div class="corner-bl"></div>
+                                <div class="corner-br"></div>
+                            </div>
+                            <div class="overlay-icon">↗</div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h4 class="portfolio-title">Abstract Motion</h4>
+                            <p class="portfolio-cat">Creative / Light</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="portfolio-item reveal stagger-delay-3">
+                        <div class="portfolio-img-wrapper">
+                            <img src="assets/img/man.avif" alt="Fashion Photography">
+                            <div class="corner-frame">
+                                <div class="corner-tl"></div>
+                                <div class="corner-tr"></div>
+                                <div class="corner-bl"></div>
+                                <div class="corner-br"></div>
+                            </div>
+                            <div class="overlay-icon">↗</div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h4 class="portfolio-title">Fashion Omni</h4>
+                            <p class="portfolio-cat">Studio / Style</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="center-btn-wrapper" style="text-align: center; margin-top: 40px;">
+                    <a href="#" class="btn btn-primary">View All projects</a>
+                </div>
+            </div>
+        </section>
+        <!-- Services / Assist Section -->
+        <section class="services-section">
+            <div class="container">
+                <div class="section-header center-text">
+                    <span class="section-badge">Service</span>
+                    <h2 class="section-title">How can I assist you today?</h2>
+                    <p class="section-desc">Tailored solutions for your creative needs</p>
+                </div>
+
+                <div class="services-grid">
+                    <!-- Service 1 -->
+                    <div class="service-card reveal stagger-delay-1">
+                        <div class="service-content">
+                            <span class="service-num">01</span>
+                            <h3 class="service-title">Product Photography</h3>
+                            <p class="service-desc">Capture the essence of your products with high-end studio
+                                photography.</p>
+                            <a href="#" class="btn btn-white btn-sm">View Work</a>
+                        </div>
+                        <div class="service-img">
+
+                            <img src="assets/img/cam-lens.avif" alt="Product Photography">
+                        </div>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div class="service-card dark-card reveal stagger-delay-2">
+                        <div class="service-content">
+                            <span class="service-num">02</span>
+                            <h3 class="service-title">Portrait Session</h3>
+                            <p class="service-desc">Professional portraits that tell your personal or brand story.</p>
+                            <a href="#" class="btn btn-white btn-sm">Book Session</a>
+                        </div>
+                        <div class="service-img">
+
+                            <img src="assets/img/hero.avif" alt="Portrait Session">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- News / Update Section -->
+        <section class="news-section">
+            <div class="container">
+                <div class="section-header center-text">
+                    <span class="section-badge">Blog</span>
+                    <h2 class="section-title">News & Update</h2>
+                    <p class="section-desc">Stay updated with the latest trends and stories</p>
+                </div>
+
+                <div class="news-grid">
+                    <!-- News 1 -->
+                    <div class="news-card">
+                        <div class="news-img">
+                            <img src="assets/img/hero-mini-1.avif" alt="News 1">
+                            <div class="news-tag">Tips</div>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span>Oct 12, 2024</span>
+                                <span>• 5 min read</span>
+                            </div>
+                            <h4 class="news-title">5 Tips for Better Lighting</h4>
+                            <a href="#" class="read-more">Read Article ↗</a>
+                        </div>
+                    </div>
+
+                    <!-- News 2 -->
+                    <div class="news-card">
+                        <div class="news-img">
+                            <img src="assets/img/cam-2.avif" alt="News 2">
+                            <div class="news-tag">Gear</div>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span>Sep 28, 2024</span>
+                                <span>• 3 min read</span>
+                            </div>
+                            <h4 class="news-title">Best Cameras for 2024</h4>
+                            <a href="#" class="read-more">Read Article ↗</a>
+                        </div>
+                    </div>
+
+                    <!-- News 3 -->
+                    <div class="news-card">
+                        <div class="news-img">
+                            <img src="assets/img/mann.avif" alt="News 3">
+                            <div class="news-tag">Behind scenes</div>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span>Aug 15, 2024</span>
+                                <span>• 8 min read</span>
+                            </div>
+                            <h4 class="news-title">A Day in the Studio</h4>
+                            <a href="#" class="read-more">Read Article ↗</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Testimonials Section -->
+        <section class="testimonials-section">
+            <div class="container">
+                <div class="section-header center-text">
+                    <span class="section-badge">Reviews</span>
+                    <h2 class="section-title">See from Our User</h2>
+                    <p class="section-desc">What our clients say about us</p>
+                </div>
+
+                <div class="testimonials-grid">
+                    <!-- Review 1 -->
+                    <div class="review-card">
+                        <p class="review-text">"The photos came out absolutely stunning! The lighting and composition
+                            were perfect."</p>
+                        <div class="reviewer-info">
+                            <div class="reviewer-img">
+                                <!-- Placeholder or generic avatar -->
+                                <img src="assets/img/man.avif" alt="User">
+                            </div>
+                            <div>
+                                <h5 class="reviewer-name">Sarah Jenkins</h5>
+                                <p class="reviewer-role">Product Manager</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 2 -->
+                    <div class="review-card">
+                        <p class="review-text">"Professional, creative, and easy to work with. Highly recommended for
+                            any brand shoot."</p>
+                        <div class="reviewer-info">
+                            <div class="reviewer-img">
+                                <img src="assets/img/hero-mini.avif" alt="User">
+                            </div>
+                            <div>
+                                <h5 class="reviewer-name">David Lee</h5>
+                                <p class="reviewer-role">Creative Director</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 3 -->
+                    <div class="review-card">
+                        <p class="review-text">"Captured the exact mood I was looking for. The post-processing was top
+                            notch."</p>
+                        <div class="reviewer-info">
+                            <div class="reviewer-img">
+                                <img src="assets/img/mann.avif" alt="User">
+                            </div>
+                            <div>
+                                <h5 class="reviewer-name">Emily Chen</h5>
+                                <p class="reviewer-role">Fashion Designer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2 class="cta-title">Great photos begin with a <br> conversation</h2>
+                    <div class="cta-images">
+                        <!-- Implied visual of conversation or portfolio snippets -->
+                        <img src="assets/img/cam-lens.avif" class="cta-img-1" alt="">
+                        <img src="assets/img/shoe.avif" class="cta-img-2" alt="">
+                        <img src="assets/img/man.avif" class="cta-img-3" alt="">
+                    </div>
+                    <a href="#" class="btn btn-primary cta-btn">Let's Talk ↗</a>
+                    <p class="cta-sub">Free 30 min consultation</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Unified Footer Section -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Left: CTA / Contact -->
+                <div class="footer-cta">
+                    <h2 class="footer-cta-title blur-reveal">Let's create something <br> extraordinary together</h2>
+                    <p class="footer-cta-desc blur-reveal">Book your session today</p>
+                    <a href="#" class="btn btn-primary">Get in Touch</a>
+                </div>
+
+                <!-- Right: Brand & Links -->
+                <div class="footer-nav">
+                    <div class="footer-brand">
+                        <h3>Tejas Photography</h3>
+                        <p>Capturing the unseen.</p>
+                    </div>
+
+                    <div class="footer-links-group">
+                        <div class="footer-col">
+                            <h4>Menu</h4>
+                            <ul>
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">Work</a></li>
+                                <li><a href="#">Services</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-col">
+                            <h4>Social</h4>
+                            <ul>
+                                <li><a href="#">Instagram</a></li>
+                                <li><a href="#">Twitter</a></li>
+                                <li><a href="#">LinkedIn</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Tejas Photography. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script>
+        // Initialize Lenis
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+            mouseMultiplier: 1,
+            smoothTouch: false,
+            touchMultiplier: 2,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+
+        requestAnimationFrame(raf);
+    </script>
+
+    <!-- GSAP & SplitType for Advanced Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/split-type"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Register ScrollTrigger
+            gsap.registerPlugin(ScrollTrigger);
+
+            // 1. Text Reveal Animation (Blur + Stagger)
+            const textElements = document.querySelectorAll('.blur-reveal');
+
+            textElements.forEach(el => {
+                // Determine Stagger Delay if present
+                let delay = 0;
+                if (el.classList.contains('stagger-delay-1')) delay = 0.1;
+                if (el.classList.contains('stagger-delay-2')) delay = 0.2;
+                if (el.classList.contains('stagger-delay-3')) delay = 0.3;
+
+                // Reveal parent (prevent FOUC from CSS visibility:hidden)
+                el.style.visibility = 'visible';
+
+                // Split text into lines/words
+                // using 'words' type for that chunky word-by-word reveal
+                const split = new SplitType(el, { types: 'lines, words' });
+
+                // Animate words
+                gsap.fromTo(split.words,
+                    {
+                        opacity: 0,
+                        y: 20,
+                        filter: 'blur(10px)'
+                    },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        filter: 'blur(0px)',
+                        duration: 1,
+                        delay: delay,
+                        stagger: 0.05,
+                        ease: 'power3.out',
+                        scrollTrigger: {
+                            trigger: el,
+                            start: 'top 85%', // Trigger when top of element is 85% down viewport
+                            toggleActions: 'play none none reverse'
+                        }
+                    }
+                );
+            });
+
+            // 2. Standard Reveals (Fade Up)
+            const revealElements = document.querySelectorAll('.reveal');
+
+            revealElements.forEach(el => {
+                let delay = 0;
+                if (el.classList.contains('stagger-delay-1')) delay = 0.1;
+                if (el.classList.contains('stagger-delay-2')) delay = 0.2;
+                if (el.classList.contains('stagger-delay-3')) delay = 0.3;
+
+                gsap.fromTo(el,
+                    { opacity: 0, y: 50 },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 1,
+                        delay: delay,
+                        ease: 'power3.out',
+                        scrollTrigger: {
+                            trigger: el,
+                            start: 'top 90%',
+                            toggleActions: 'play none none reverse'
+                        }
+                    }
+                );
+            });
+        });
+    </script>
+</body>
+
+</html>
