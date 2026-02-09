@@ -10,6 +10,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
         rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/img/logo-mini-black.png">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
@@ -29,7 +30,8 @@
             <nav class="navbar" id="navbar">
                 <div class="nav-pill" id="navPill">
                     <div class="nav-header">
-                        <div class="brand-logo"><img src="assets/img/logo-mini.png" alt=""></div>
+                        <div class="brand-logo"><a href="index.html"><img src="assets/img/logo-mini.png" alt=""></a>
+                        </div>
                         <button class="hamburger" id="menuToggle" aria-label="Toggle menu">
                             <span></span>
                             <span></span>
@@ -37,14 +39,14 @@
                         </button>
                     </div>
                     <ul class="nav-links" id="navLinks">
-                        <li><a href="#" class="active">Home</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Service</a></li>
-                        <li><a href="#">Portfolio</a></li>
-                        <li><a href="#">Blog</a></li>
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li><a href="service.html">Service</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                     <div class="nav-btn-wrapper">
-                        <a href="#" class="btn-chat">Chat now <span class="arrow">↗</span></a>
+                        <a href="https://wa.me/918459660254?text=Hello%20Tejas%2C%20I%20would%20like%20to%20enquire%20about%20a%20photography%20quote%20for%20my%20upcoming%20event%2Fproject."
+                            target="_blank" class="btn-chat">Chat now <span class="arrow">↗</span></a>
                     </div>
                 </div>
             </nav>
@@ -273,46 +275,89 @@
                 </div>
 
                 <div class="center-btn-wrapper" style="text-align: center; margin-top: 40px;">
-                    <a href="#" class="btn btn-primary">View All projects</a>
+                    <a href="/portfolio.html" class="btn btn-primary">View All projects</a>
                 </div>
             </div>
         </section>
-        <!-- Services / Assist Section -->
+        <!-- Services / Assist Section (Bento Grid) -->
         <section class="services-section">
             <div class="container">
                 <div class="section-header center-text">
                     <span class="section-badge">Service</span>
-                    <h2 class="section-title">How can I assist you today?</h2>
-                    <p class="section-desc">Tailored solutions for your creative needs</p>
+                    <h2 class="section-title">What would you like to <br> work on today?</h2>
+                    <p class="section-desc">Transform your ideas into captivating images, focusing on creativity and
+                        expert use of light.</p>
                 </div>
 
-                <div class="services-grid">
-                    <!-- Service 1 -->
-                    <div class="service-card reveal stagger-delay-1">
-                        <div class="service-content">
-                            <span class="service-num">01</span>
-                            <h3 class="service-title">Product Photography</h3>
-                            <p class="service-desc">Capture the essence of your products with high-end studio
-                                photography.</p>
-                            <a href="#" class="btn btn-white btn-sm">View Work</a>
+                <div class="services-bento">
+                    <!-- Card 1: Portrait (Medium) -->
+                    <div class="bento-card card-portrait reveal">
+                        <div class="bento-icon">
+                            <img src="assets/img/cam-lens.avif" alt="Lens">
                         </div>
-                        <div class="service-img">
-
-                            <img src="assets/img/cam-lens.avif" alt="Product Photography">
+                        <div class="bento-content">
+                            <h3>Portrait Photography</h3>
+                            <p>For individuals, couples, and professionals.</p>
+                            <div class="bento-tags">
+                                <span>Studio or outdoor</span>
+                                <span>Natural editing</span>
+                                <span>High-res files</span>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Service 2 -->
-                    <div class="service-card dark-card reveal stagger-delay-2">
-                        <div class="service-content">
-                            <span class="service-num">02</span>
-                            <h3 class="service-title">Portrait Session</h3>
-                            <p class="service-desc">Professional portraits that tell your personal or brand story.</p>
-                            <a href="#" class="btn btn-white btn-sm">Book Session</a>
+                    <!-- Card 2: Branding (Large/Wide) -->
+                    <div class="bento-card card-branding reveal stagger-delay-1">
+                        <img src="assets/img/hero.avif" alt="Branding" class="bento-bg-img">
+                        <div class="bento-float-card">
+                            <div class="icon-small">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                    <polyline points="17 8 12 3 7 8" />
+                                    <line x1="12" y1="3" x2="12" y2="15" />
+                                </svg>
+                            </div>
+                            <h4>Branding & Lifestyle <br> Photography</h4>
+                            <div class="bento-tags-mini">
+                                <span>Talent brand audit</span>
+                                <span>Fast delivery</span>
+                            </div>
+                            <p>Capture visuals that tell your story.</p>
                         </div>
-                        <div class="service-img">
+                    </div>
 
-                            <img src="assets/img/hero.avif" alt="Portrait Session">
+                    <!-- Card 3: Top Gear (Medium/Small) -->
+                    <div class="bento-card card-gear reveal stagger-delay-2">
+                        <div class="gear-content">
+                            <div class="icon-circle">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                            </div>
+                            <h4>Shot with Top Gear</h4>
+                            <p>Using premium equipment for stunning images.</p>
+                            <div class="bento-tags">
+                                <span>Lighting</span>
+                                <span>Gimbals</span>
+                                <span>Editing</span>
+                            </div>
+                        </div>
+                        <img src="assets/img/cam-2.avif" alt="Gear" class="gear-img-corner">
+                    </div>
+
+                    <!-- Card 4: Stats (Split) -->
+                    <div class="bento-card card-stats reveal stagger-delay-3">
+                        <div class="stat-item">
+                            <span class="stat-num">150+</span>
+                            <span class="stat-label">Clients</span>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <span class="stat-num">100+</span>
+                            <span class="stat-label">Photoshoots</span>
                         </div>
                     </div>
                 </div>
@@ -492,7 +537,7 @@
                 <div class="footer-nav">
                     <div class="footer-brand">
                         <!-- <h3>Tejas Photography</h3> -->
-                        <img style="filter: invert(1);" src="assets/img/logo-max.png" alt="">
+                        <a href="index.html"><img style="filter: invert(1);" src="assets/img/logo-max.png" alt=""></a>
                         <p>Capturing the unseen.</p>
                     </div>
 
@@ -500,10 +545,10 @@
                         <div class="footer-col">
                             <h4>Menu</h4>
                             <ul>
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">Work</a></li>
-                                <li><a href="#">Services</a></li>
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="about.html">About</a></li>
+                                <li><a href="portfolio.html">Work</a></li>
+                                <li><a href="service.html">Services</a></li>
                             </ul>
                         </div>
                         <div class="footer-col">

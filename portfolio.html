@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Creative Photography</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/img/logo-mini-black.png">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+    <!-- Internal Page Header -->
+    <header class="page-header">
+        <div class="container header-container">
+            <nav class="navbar" id="navbar">
+                <div class="nav-pill" id="navPill">
+                    <div class="nav-header">
+                        <div class="brand-logo"><a href="index.html"><img src="assets/img/logo-mini.png" alt=""></a>
+                        </div>
+                        <button class="hamburger" id="menuToggle" aria-label="Toggle menu">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                    </div>
+                    <ul class="nav-links" id="navLinks">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="service.html">Service</a></li>
+                        <li><a href="portfolio.html" class="active">Portfolio</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                    <div class="nav-btn-wrapper">
+                        <a href="https://wa.me/918459660254?text=Hello%20Tejas%2C%20I%20would%20like%20to%20enquire%20about%20a%20photography%20quote%20for%20my%20upcoming%20event%2Fproject."
+                            target="_blank" class="btn-chat">Chat now <span class="arrow">↗</span></a>
+                    </div>
+                </div>
+            </nav>
+
+            <script>
+                const menuToggle = document.getElementById('menuToggle');
+                const navPill = document.getElementById('navPill');
+
+                menuToggle.addEventListener('click', () => {
+                    navPill.classList.toggle('expanded');
+                    menuToggle.classList.toggle('active');
+                });
+            </script>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Portfolio Section -->
+        <section class="services-section page-service-section">
+            <div class="container">
+                <div class="section-header center-text">
+                    <span class="section-badge">Portfolio</span>
+                    <h2 class="section-title">A glimpse through my <br> perspective</h2>
+                    <p class="section-desc">I transform your vision into reality with creative editorial <br> and
+                        portrait photography.</p>
+                </div>
+
+                <div class="portfolio-grid">
+                    <!-- Item 1 -->
+                    <div class="portfolio-item reveal" data-id="1">
+                        <div class="portfolio-img-wrapper">
+                            <img src="assets/img/shoe.avif" alt="Crafted Details">
+                            <div class="overlay-icon">↗</div>
+                        </div>
+                        <div class="portfolio-info">
+                            <div class="portfolio-info-header">
+                                <h3 class="portfolio-title">Crafted Details</h3>
+                                <span class="portfolio-cat">Product Photography</span>
+                            </div>
+                            <p class="portfolio-desc">Telling flavor stories through styled shots.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="portfolio-item reveal" data-id="2">
+                        <div class="portfolio-img-wrapper">
+                            <!-- Using hero.avif (Person in white) -->
+                            <img src="assets/img/hero.avif" alt="Monochrome Mood">
+                            <div class="overlay-icon">↗</div>
+                        </div>
+                        <div class="portfolio-info">
+                            <div class="portfolio-info-header">
+                                <h3 class="portfolio-title">Monochrome Mood</h3>
+                                <span class="portfolio-cat">Portrait Photography</span>
+                            </div>
+                            <p class="portfolio-desc">Black-and-white tones with bold emotion.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="portfolio-item reveal" data-id="3">
+                        <div class="portfolio-img-wrapper">
+                            <!-- using hero-mini.avif (Quiet Luxury) -->
+                            <img src="assets/img/hero-mini.avif" alt="Quiet Luxury">
+                            <div class="overlay-icon">↗</div>
+                        </div>
+                        <div class="portfolio-info">
+                            <div class="portfolio-info-header">
+                                <h3 class="portfolio-title">Quiet Luxury</h3>
+                                <span class="portfolio-cat">Event Photography</span>
+                            </div>
+                            <p class="portfolio-desc">Moments that feel effortless yet refined.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="portfolio-item reveal" data-id="4">
+                        <div class="portfolio-img-wrapper">
+                            <!-- using mann.avif (Portrait close up) -->
+                            <img src="assets/img/mann.avif" alt="Urban Elegance">
+                            <div class="overlay-icon">↗</div>
+                        </div>
+                        <div class="portfolio-info">
+                            <div class="portfolio-info-header">
+                                <h3 class="portfolio-title">Urban Elegance</h3>
+                                <span class="portfolio-cat">Portrait Photography</span>
+                            </div>
+                            <p class="portfolio-desc">Clean lines and contrast in city structures.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section (Restored) -->
+        <section class="testimonials-section">
+            <div class="container">
+                <div class="section-header center-text">
+                    <span class="section-badge">Testimonials</span>
+                    <h2 class="section-title">Hear from Our User</h2>
+                    <p class="section-desc">Read how our users have achieved success.</p>
+                </div>
+
+                <div class="testimonials-grid">
+                    <!-- Review 1 -->
+                    <div class="review-card">
+                        <div class="review-header">
+                            <h4 class="review-title">"Quality That Boosted Our Brand"</h4>
+                            <p class="review-text">The photos were sharp, clear, and made our visuals look premium.</p>
+                        </div>
+                        <div class="reviewer-info">
+                            <div class="reviewer-details">
+                                <img src="assets/img/man.avif" alt="User" class="reviewer-img">
+                                <div>
+                                    <h5 class="reviewer-name">Henki</h5>
+                                    <p class="reviewer-role">Artist</p>
+                                </div>
+                            </div>
+                            <div class="star-rating-mini">
+                                <!-- 5 Stars -->
+                                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span
+                                    class="star">★</span><span class="star">★</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 2 -->
+                    <div class="review-card">
+                        <div class="review-header">
+                            <h4 class="review-title">"Captured the Essence of Our Business"</h4>
+                            <p class="review-text">Each image told a story and aligned perfectly with our vision.</p>
+                        </div>
+                        <div class="reviewer-info">
+                            <div class="reviewer-details">
+                                <img src="assets/img/hero-mini.avif" alt="User" class="reviewer-img">
+                                <div>
+                                    <h5 class="reviewer-name">Leapan</h5>
+                                    <p class="reviewer-role">Artist</p>
+                                </div>
+                            </div>
+                            <div class="star-rating-mini">
+                                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span
+                                    class="star">★</span><span class="star">★</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 3 -->
+                    <div class="review-card">
+                        <div class="review-header">
+                            <h4 class="review-title">"Exactly What Our Website Needed"</h4>
+                            <p class="review-text">Modern, high-quality visuals that made a great first impression.</p>
+                        </div>
+                        <div class="reviewer-info">
+                            <div class="reviewer-details">
+                                <img src="assets/img/mann.avif" alt="User" class="reviewer-img">
+                                <div>
+                                    <h5 class="reviewer-name">Wedly</h5>
+                                    <p class="reviewer-role">Orz Founder</p>
+                                </div>
+                            </div>
+                            <div class="star-rating-mini">
+                                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span
+                                    class="star">★</span><span class="star">★</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <div class="container">
+                <div class="faq-grid">
+                    <!-- Left: Header & Info -->
+                    <div class="faq-header-col">
+                        <span class="section-badge">FAQ</span>
+                        <h2 class="section-title">Have Questions?</h2>
+                        <p class="section-desc">Let us know how we can assist.</p>
+
+                        <div class="faq-images">
+                            <img src="assets/img/shoe.avif" alt="Thumb 1" class="faq-thumb">
+                            <img src="assets/img/hero.avif" alt="Thumb 2" class="faq-thumb">
+                        </div>
+
+                        <a href="#" class="btn btn-dark contact-btn">Contact Us</a>
+                    </div>
+
+                    <!-- Right: Accordion -->
+                    <div class="faq-accordion">
+                        <!-- FAQ 1 -->
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>What types of photography do you offer?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>We specialize in portrait, branding, lifestyle, and commercial photography. We also
+                                    offer product photography and fashion shoots.</p>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 2 -->
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>How do I book a session?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>You can book a session by contacting us via the form below or emailing us directly.
+                                    We'll discuss your needs and schedule a suitable time.</p>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 3 -->
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>Do you edit the photos?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Yes, all selected photos undergo professional retouching and color grading to ensure
+                                    they meet our high quality standards.</p>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 4 -->
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>How long until I got my photos?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Typical turnaround time is 1-2 weeks depending on the project scope. We also offer
+                                    expedited delivery options if needed.</p>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 5 -->
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>Can I request specific styles or poses?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Absolutely! We encourage you to share your mood board or ideas. We love collaborating
+                                    to bring your specific vision to life.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2 class="cta-title">Great photos begin with a <br> conversation</h2>
+                    <div class="cta-marquee">
+                        <div class="marquee-content">
+                            <!-- Helper: Duplicate images enough times to fill screen width + buffer -->
+                            <!-- <img src="assets/img/cam-lens.avif" class="cta-img" alt=""> -->
+                            <img src="assets/img/shoe.avif" class="cta-img" alt="">
+                            <img src="assets/img/man.avif" class="cta-img" alt="">
+                            <img src="assets/img/hero.avif" class="cta-img" alt="">
+                            <img src="assets/img/hero-mini.avif" class="cta-img" alt="">
+                            <img src="assets/img/mann.avif" class="cta-img" alt="">
+
+                            <!-- Duplicate Set 1 -->
+                            <!-- <img src="assets/img/cam-lens.avif" class="cta-img" alt=""> -->
+                            <img src="assets/img/shoe.avif" class="cta-img" alt="">
+                            <img src="assets/img/man.avif" class="cta-img" alt="">
+                            <img src="assets/img/hero.avif" class="cta-img" alt="">
+                            <img src="assets/img/hero-mini.avif" class="cta-img" alt="">
+                            <img src="assets/img/mann.avif" class="cta-img" alt="">
+
+                            <!-- Duplicate Set 2 -->
+                            <!-- <img src="assets/img/cam-lens.avif" class="cta-img" alt=""> -->
+                            <img src="assets/img/shoe.avif" class="cta-img" alt="">
+                            <img src="assets/img/man.avif" class="cta-img" alt="">
+                            <img src="assets/img/hero.avif" class="cta-img" alt="">
+                            <img src="assets/img/hero-mini.avif" class="cta-img" alt="">
+                            <img src="assets/img/mann.avif" class="cta-img" alt="">
+                        </div>
+                    </div>
+                    <a href="#" class="btn btn-primary cta-btn">Let's Talk ↗</a>
+                    <p class="cta-sub">Free 30 min consultation</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Unified Footer Section -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Left: CTA / Contact -->
+                <div class="footer-cta">
+                    <h2 class="footer-cta-title blur-reveal">Let's create something <br> extraordinary together</h2>
+                    <p class="footer-cta-desc blur-reveal">Book your session today</p>
+                    <a href="#" class="btn btn-primary">Get in Touch</a>
+                </div>
+
+                <!-- Right: Brand & Links -->
+                <div class="footer-nav">
+                    <div class="footer-brand">
+                        <!-- <h3>Tejas Photography</h3> -->
+                        <a href="index.html"><img style="filter: invert(1);" src="assets/img/logo-max.png" alt=""></a>
+                        <p>Capturing the unseen.</p>
+                    </div>
+
+                    <div class="footer-links-group">
+                        <div class="footer-col">
+                            <h4>Menu</h4>
+                            <ul>
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="about.html">About</a></li>
+                                <li><a href="portfolio.html">Work</a></li>
+                                <li><a href="service.html">Services</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-col">
+                            <h4>Social</h4>
+                            <ul>
+                                <li><a href="#">Instagram</a></li>
+                                <li><a href="#">Twitter</a></li>
+                                <li><a href="#">LinkedIn</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Tejas Photography. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script>
+        // Initialize Lenis
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+            mouseMultiplier: 1,
+            smoothTouch: false,
+            touchMultiplier: 2,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+
+        requestAnimationFrame(raf);
+    </script>
+
+    <!-- Scroll & Animation Script -->
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="assets/js/animations.js"></script>
+
+    <!-- Portfolio Modal Container -->
+    <div id="portfolioModal" class="modal-overlay" data-lenis-prevent>
+        <div class="modal-container">
+            <button class="modal-close" id="modalClose">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="modal-content">
+                <div class="modal-header-content">
+                    <button class="modal-back-btn" id="modalBackBtn">← Back</button>
+                    <div class="modal-tags">
+                        <span id="modalCategory" class="modal-tag">Photography</span>
+                        <span id="modalDate" class="modal-date">Aug 1, 2025</span>
+                    </div>
+                    <h2 id="modalTitle" class="modal-title">Project Title</h2>
+                    <p id="modalDesc" class="modal-desc">Project description goes here.</p>
+                </div>
+                <div class="modal-gallery" id="modalGallery">
+                    <!-- Images will be injected here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Portfolio Data
+        const portfolioData = {
+            1: {
+                title: "Crafted Details",
+                category: "Product Photography",
+                date: "Aug 15, 2025",
+                desc: "A series focused on the intricate details of premium footwear, highlighting texture and form through careful lighting.",
+                images: [
+                    "assets/img/shoe.avif",
+                    "assets/img/hero.avif",
+                    "assets/img/mann.avif",
+                    "assets/img/shoe.avif"
+                ]
+            },
+            2: {
+                title: "Monochrome Mood",
+                category: "Portrait Photography",
+                date: "Sep 2, 2025",
+                desc: "Exploring emotion and depth through high-contrast black and white portraiture.",
+                images: [
+                    "assets/img/hero.avif",
+                    "assets/img/mann.avif",
+                    "assets/img/hero-mini.avif",
+                    "assets/img/hero.avif"
+                ]
+            },
+            3: {
+                title: "Quiet Luxury",
+                category: "Event Photography",
+                date: "Oct 10, 2025",
+                desc: "Capturing the subtle elegance of high-end events with a focus on candid moments and atmosphere.",
+                images: [
+                    "assets/img/hero-mini.avif",
+                    "assets/img/shoe.avif",
+                    "assets/img/hero.avif",
+                    "assets/img/hero-mini.avif"
+                ]
+            },
+            4: {
+                title: "Urban Elegance",
+                category: "Portrait Photography",
+                date: "Nov 5, 2025",
+                desc: "Integrating human subjects with brutalist urban architecture to create striking visual contrasts.",
+                images: [
+                    "assets/img/mann.avif",
+                    "assets/img/hero-mini.avif",
+                    "assets/img/shoe.avif",
+                    "assets/img/mann.avif"
+                ]
+            }
+        };
+
+        // DOM Elements
+        const modal = document.getElementById('portfolioModal');
+        const modalClose = document.getElementById('modalClose');
+        const modalBackBtn = document.getElementById('modalBackBtn');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalCategory = document.getElementById('modalCategory');
+        const modalDate = document.getElementById('modalDate');
+        const modalDesc = document.getElementById('modalDesc');
+        const modalGallery = document.getElementById('modalGallery');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        // Functions
+        function openModal(id) {
+            const data = portfolioData[id];
+            if (!data) return;
+
+            // Populate Data
+            modalTitle.textContent = data.title;
+            modalCategory.textContent = data.category;
+            modalDate.textContent = data.date;
+            modalDesc.textContent = data.desc;
+
+            // Populate Gallery
+            modalGallery.innerHTML = data.images.map(img => `
+                <div class="gallery-item">
+                    <img src="${img}" alt="${data.title}">
+                </div>
+            `).join('');
+
+            // Show Modal
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Disable scroll
+            if (typeof lenis !== 'undefined') lenis.stop(); // Stop Lenis scroll
+
+            // GSAP Animation
+            gsap.fromTo('.modal-container',
+                { y: 50, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.5, ease: 'power3.out' }
+            );
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = ''; // Enable scroll
+            if (typeof lenis !== 'undefined') lenis.start(); // Resume Lenis scroll
+        }
+
+        // Event Listeners
+        portfolioItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const id = item.getAttribute('data-id');
+                openModal(id);
+            });
+        });
+
+        modalClose.addEventListener('click', closeModal);
+        modalBackBtn.addEventListener('click', closeModal);
+
+        // Close on background click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        // Close on Esc key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+    </script>
+
+</body>
+
+</html>
