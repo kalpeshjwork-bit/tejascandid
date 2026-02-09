@@ -802,7 +802,7 @@ section {
     margin-right: auto;
 }
 
-/* Internal Page Header (for service.html etc) */
+/* Internal Page Header (for service etc) */
 .page-header {
     background-color: var(--bg-color);
     padding-top: 20px;
