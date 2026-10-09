@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quotation & Pricing Calculator | Tejas Candid Photography</title>
+    <meta name="description"
+        content="Calculate your wedding & event photography quotation instantly with Tejas Candid Photography. Explore fixed packages and custom estimates with complimentary gifts.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/img/logo-mini-black.png">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/quotation.css">
+</head>
+
+<body>
+
+    <!-- Internal Page Header -->
+    <header class="page-header">
+        <div class="container header-container">
+            <nav class="navbar" id="navbar">
+                <div class="nav-pill" id="navPill">
+                    <div class="nav-header">
+                        <div class="brand-logo"><a href="/"><img src="assets/img/logo-mini.png" alt="Tejas Candid"></a>
+                        </div>
+                        <button class="hamburger" id="menuToggle" aria-label="Toggle menu">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                    </div>
+                    <ul class="nav-links" id="navLinks">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="service">Service</a></li>
+                        <li><a href="portfolio">Portfolio</a></li>
+                        <li><a href="quotation" class="active">Quotation</a></li>
+                        <li><a href="contact">Contact</a></li>
+                    </ul>
+                    <div class="nav-btn-wrapper">
+                        <a href="https://wa.me/918459660254?text=Hello%20Tejas%2C%20I%20would%20like%20to%20enquire%20about%20a%20photography%20quote%20for%20my%20upcoming%20event."
+                            target="_blank" class="btn-chat">Chat now <span class="arrow">↗</span></a>
+                    </div>
+                </div>
+            </nav>
+
+            <script>
+                const menuToggle = document.getElementById('menuToggle');
+                const navPill = document.getElementById('navPill');
+
+                menuToggle.addEventListener('click', () => {
+                    navPill.classList.toggle('expanded');
+                    menuToggle.classList.toggle('active');
+                });
+            </script>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero / Header Section -->
+        <section class="quotation-hero">
+            <div class="container">
+                <div class="quotation-badge">
+                    <span class="pulse-dot"></span>
+                    Instant Price Calculator & Invoice
+                </div>
+                <h1 class="quotation-title blur-reveal">Photography Quotation <br>& Bill Generator</h1>
+                <p class="quotation-subtitle blur-reveal">
+                    Choose from our transparent, curated wedding packages or build a personalized custom quotation with
+                    special complimentary perks included. Print or share your bill in one click.
+                </p>
+
+                <!-- Mode Switcher Tabs -->
+                <div class="quote-mode-switcher">
+                    <button class="quote-mode-btn" data-tab="tab-fixed">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="3" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="14" width="7" height="7"></rect>
+                            <rect x="3" y="14" width="7" height="7"></rect>
+                        </svg>
+                        Fixed Packages
+                    </button>
+                    <button class="quote-mode-btn active" data-tab="tab-custom">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <line x1="4" y1="21" x2="4" y2="14"></line>
+                            <line x1="4" y1="10" x2="4" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="12"></line>
+                            <line x1="12" y1="8" x2="12" y2="3"></line>
+                            <line x1="20" y1="21" x2="20" y2="16"></line>
+                            <line x1="20" y1="12" x2="20" y2="3"></line>
+                            <line x1="1" y1="14" x2="7" y2="14"></line>
+                            <line x1="9" y1="8" x2="15" y2="8"></line>
+                            <line x1="17" y1="16" x2="23" y2="16"></line>
+                        </svg>
+                        Custom Calculator
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================= -->
+        <!-- TAB 1: FIXED PACKAGES SECTION -->
+        <!-- ============================================================= -->
+        <section id="tab-fixed" class="tab-pane">
+            <div class="container">
+                <div class="packages-grid">
+
+                    <!-- Package 1: ₹9,999 Special Mini Event Package -->
+                    <div class="pkg-card">
+                        <div>
+                            <span class="pkg-badge">Mini-Event Special</span>
+                            <div class="pkg-header">
+                                <h3 class="pkg-name">Starter Event Package</h3>
+                                <p class="pkg-desc">Perfect for Pre-wedding, Baby Shower, Engagement teasers, or
+                                    intimate family celebrations.</p>
+                                <div class="pkg-price-wrap">
+                                    <span class="pkg-price">₹9,999</span>
+                                    <span class="pkg-period">/ complete package</span>
+                                </div>
+                            </div>
+
+                            <ul class="pkg-features-list">
+                                <li class="pkg-feature-item">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                    <div><strong>10 High-Res Photos</strong> (Pro Color Graded & Retouched)</div>
+                                </li>
+                                <li class="pkg-feature-item">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                    <div><strong>2 Trending Social Reels</strong> OR <strong>1 Highlight + 1 Reel</strong></div>
+                                </li>
+                                <li class="pkg-feature-item">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                    <div>Fast turnaround & private cloud delivery link</div>
+                                </li>
+                            </ul>
+
+                            <div class="complimentary-box">
+                                <h5>🎁 Complimentary Perks</h5>
+                                <div class="complimentary-tags">
+                                    <span class="complimentary-pill">High-Speed Pendrive</span>
+                                    <span class="complimentary-pill">2 Social Reels</span>
+                                    <span class="complimentary-pill">Highlight Teaser</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn-select-pkg" data-package="mini-9999">
+                            Select This Package <span>→</span>
+                        </button>
+                    </div>
+
+                    <!-- Package 2: Royal Wedding Package (₹46,000) - Featured -->
+                    <div class="pkg-card featured">
+                        <div>
+                            <span class="pkg-badge">🌟 Complete Wedding Special</span>
+                            <div class="pkg-header">
+                                <h3 class="pkg-name">Royal Grand Wedding</h3>
+                                <p class="pkg-desc">Full spectrum coverage with Traditional, Candid, 4K Cinematic, and
+                                    luxury album.</p>
+                                <div class="pkg-price-wrap">
+                                    <span class="pkg-price">₹46,000</span>
+                                    <span class="pkg-period">/ 1 Full Day Event</span>
+                                </div>
+                            </div>
+
+                            <ul class="pkg-features-list">
+                                <li class="pkg-feature-item">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                    <div><strong>Traditional Photo + Video:</strong> ₹10,000 (Full Day Coverage)</div>
+                                </li>
+                                <li class="pkg-feature-item">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                    <div><strong>Candid Photography:</strong> ₹6,000 (Creative & Emotional Moments)</div>
+                                </li>
+                                <li class="pkg-feature-item">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                    <div><strong>Cinematic Videography:</strong> ₹15,000 (Stabilized 4K Film)</div>
+                                </li>
+                                <li class="pkg-feature-item">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                    <div><strong>Premium Album (30 Sheets):</strong> ₹15,000 (₹500 × 30 Sheets)</div>
+                                </li>
+                            </ul>
+
+                            <div class="complimentary-box">
+                                <h5>🎁 All 7 Complimentary Gifts Included (FREE)</h5>
+                                <div class="complimentary-tags">
+                                    <span class="complimentary-pill">Pendrive</span>
+                                    <span class="complimentary-pill">Minibook Album</span>
+                                    <span class="complimentary-pill">20×30 Photo Frame</span>
+                                    <span class="complimentary-pill">Table Calendar</span>
+                                    <span class="complimentary-pill">Premium Bag+Box</span>
+                                    <span class="complimentary-pill">2 Reel Videos</span>
+                                    <span class="complimentary-pill">Highlight Film</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn-select-pkg" data-package="wedding-grand">
+                            Select Grand Package <span>→</span>
+                        </button>
+                    </div>
+
+                    <!-- Package 3: Traditional Classic (₹25,000) -->
+                    <div class="pkg-card">
+                        <div>
+                            <span class="pkg-badge">Traditional Classic</span>
+                            <div class="pkg-header">
+                                <h3 class="pkg-name">Traditional & Album</h3>
+                                <p class="pkg-desc">Essential rituals coverage with full day video, photo and 30-sheet
+                                    printed photobook.</p>
+                                <div class="pkg-price-wrap">
+                                    <span class="pkg-price">₹25,000</span>
+                                    <span class="pkg-period">/ 1 Full Day</span>
+                                </div>
+                            </div>
+
+                            <ul class="pkg-features-list">
+                                <li class="pkg-feature-item">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                    <div><strong>Traditional Photo + Video:</strong> ₹10,000 (1 Day)</div>
+                                </li>
+                                <li class="pkg-feature-item">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                    <div><strong>Photobook Album (30 Sheets):</strong> ₹15,000 (₹500/sheet)</div>
+                                </li>
+                                <li class="pkg-feature-item">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                    <div>Complete stage, rituals & family guest coverage</div>
+                                </li>
+                            </ul>
+
+                            <div class="complimentary-box">
+                                <h5>🎁 Complimentary Perks</h5>
+                                <div class="complimentary-tags">
+                                    <span class="complimentary-pill">Pendrive</span>
+                                    <span class="complimentary-pill">Minibook Album</span>
+                                    <span class="complimentary-pill">Table Calendar</span>
+                                    <span class="complimentary-pill">Bag + Box</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn-select-pkg" data-package="traditional-classic">
+                            Select This Package <span>→</span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================= -->
+        <!-- TAB 2: CUSTOM CALCULATOR & BUILDER -->
+        <!-- ============================================================= -->
+        <section id="tab-custom" class="tab-pane active">
+            <div class="container">
+                <div class="quote-builder-grid">
+
+                    <!-- Left: Configuration Form -->
+                    <div class="builder-panel">
+                        <!-- Step 1: Client & Event Information -->
+                        <div class="panel-title-wrap">
+                            <h3 class="panel-title">
+                                <span class="step-num">1</span> Client & Event Details
+                            </h3>
+                        </div>
+
+                        <div class="form-row">
+                            <div>
+                                <label class="input-label" for="inputClientName">Client / Couple Name</label>
+                                <input type="text" id="inputClientName" class="input-field"
+                                    placeholder="e.g. Rahul &amp; Sneha">
+                            </div>
+                            <div>
+                                <label class="input-label" for="inputClientPhone">WhatsApp / Mobile No.</label>
+                                <input type="text" id="inputClientPhone" class="input-field"
+                                    placeholder="e.g. +91 98765 43210">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div>
+                                <label class="input-label" for="inputEventType">Event Type</label>
+                                <select id="inputEventType" class="input-field">
+                                    <option value="Wedding & Reception">Wedding & Reception</option>
+                                    <option value="Engagement Ceremony">Engagement Ceremony</option>
+                                    <option value="Haldi & Sangeet">Haldi & Sangeet</option>
+                                    <option value="Pre-Wedding Shoot">Pre-Wedding Shoot</option>
+                                    <option value="Baby Shower / Naming Ceremony">Baby Shower / Naming Ceremony</option>
+                                    <option value="Birthday / Anniversary">Birthday / Anniversary</option>
+                                    <option value="Corporate / Special Event">Corporate / Special Event</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="input-label" for="inputEventDate">Event Date</label>
+                                <input type="date" id="inputEventDate" class="input-field" title="Select today or a future date">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div>
+                                <label class="input-label" for="inputEventVenue">Event Venue / Location</label>
+                                <input type="text" id="inputEventVenue" class="input-field"
+                                    placeholder="e.g. Pune / Mumbai">
+                            </div>
+                            <div>
+                                <label class="input-label" for="inputQuoteNo">Quotation Ref No.</label>
+                                <input type="text" id="inputQuoteNo" class="input-field" placeholder="e.g. TC-QUO-2026-6009">
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Choose Services & Rates -->
+                        <div class="panel-title-wrap" style="margin-top: 36px;">
+                            <h3 class="panel-title">
+                                <span class="step-num">2</span> Select Services & Number of Days
+                            </h3>
+                        </div>
+
+                        <div class="service-items-list">
+
+                            <!-- Service 1: Traditional Photo + Video -->
+                            <div class="service-card-item" id="serviceCardTraditional">
+                                <div class="service-card-top">
+                                    <label class="service-check-label">
+                                        <input type="checkbox" id="chkTraditional" class="custom-checkbox">
+                                        <div class="service-info">
+                                            <h4>Traditional Photography + Videography</h4>
+                                            <p>Complete multi-angle coverage for rituals, stage, and family greetings</p>
+                                        </div>
+                                    </label>
+                                    <div class="service-rate-badge">₹10,000 <span
+                                            style="font-size: 11px; color: #777; font-weight: normal;">/ day</span></div>
+                                </div>
+                                <div class="service-qty-controls">
+                                    <span class="qty-label">Duration / Days of Coverage:</span>
+                                    <div class="qty-counter-wrap">
+                                        <button type="button" class="counter-btn" id="minusTraditional">-</button>
+                                        <span class="counter-value" id="qtyTraditional">1 Day</span>
+                                        <button type="button" class="counter-btn" id="plusTraditional">+</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Service 2: Candid Photography -->
+                            <div class="service-card-item" id="serviceCardCandid">
+                                <div class="service-card-top">
+                                    <label class="service-check-label">
+                                        <input type="checkbox" id="chkCandid" class="custom-checkbox">
+                                        <div class="service-info">
+                                            <h4>Candid Photography</h4>
+                                            <p>Storytelling, emotional portraiture, natural smiles, and spontaneous moments</p>
+                                        </div>
+                                    </label>
+                                    <div class="service-rate-badge">₹6,000 <span
+                                            style="font-size: 11px; color: #777; font-weight: normal;">/ day</span></div>
+                                </div>
+                                <div class="service-qty-controls">
+                                    <span class="qty-label">Duration / Days of Coverage:</span>
+                                    <div class="qty-counter-wrap">
+                                        <button type="button" class="counter-btn" id="minusCandid">-</button>
+                                        <span class="counter-value" id="qtyCandid">1 Day</span>
+                                        <button type="button" class="counter-btn" id="plusCandid">+</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Service 3: Cinematic Videography -->
+                            <div class="service-card-item" id="serviceCardCinematic">
+                                <div class="service-card-top">
+                                    <label class="service-check-label">
+                                        <input type="checkbox" id="chkCinematic" class="custom-checkbox">
+                                        <div class="service-info">
+                                            <h4>Cinematic Videography</h4>
+                                            <p>4K Ultra-HD cinematography, gimbal stabilization, film teaser & storytelling</p>
+                                        </div>
+                                    </label>
+                                    <div class="service-rate-badge">₹15,000 <span
+                                            style="font-size: 11px; color: #777; font-weight: normal;">/ day</span></div>
+                                </div>
+                                <div class="service-qty-controls">
+                                    <span class="qty-label">Duration / Days of Coverage:</span>
+                                    <div class="qty-counter-wrap">
+                                        <button type="button" class="counter-btn" id="minusCinematic">-</button>
+                                        <span class="counter-value" id="qtyCinematic">1 Day</span>
+                                        <button type="button" class="counter-btn" id="plusCinematic">+</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Service 4: Premium Photo Album -->
+                            <div class="service-card-item" id="serviceCardAlbum">
+                                <div class="service-card-top">
+                                    <label class="service-check-label">
+                                        <input type="checkbox" id="chkAlbum" class="custom-checkbox">
+                                        <div class="service-info">
+                                            <h4>Premium Photobook Album</h4>
+                                            <p>₹500 per sheet (e.g. 30 sheets = 60 pages with luxury velvet finish)</p>
+                                        </div>
+                                    </label>
+                                    <div class="service-rate-badge" id="displayAlbumTotal">₹15,000</div>
+                                </div>
+                                <div class="album-calc-box">
+                                    <div style="display: flex; justify-content: space-between; font-size: 13px;">
+                                        <span>Number of Sheets (₹500 / sheet):</span>
+                                        <span id="displayAlbumSheets" class="sheet-count-display">30 Sheets</span>
+                                    </div>
+                                    <div class="sheet-slider-wrap">
+                                        <input type="range" id="rangeAlbumSheets" class="sheet-slider" min="15"
+                                            max="80" step="5" value="30">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Service 5: Mini-Event Package (9999) -->
+                            <div class="service-card-item" id="serviceCardMini">
+                                <div class="service-card-top">
+                                    <label class="service-check-label">
+                                        <input type="checkbox" id="chkMiniEvent" class="custom-checkbox">
+                                        <div class="service-info">
+                                            <h4>Special Package (₹9,999)</h4>
+                                            <p>10 Edited Photos + Choice of Social Video Deliverables</p>
+                                        </div>
+                                    </label>
+                                    <div class="service-rate-badge">₹9,999</div>
+                                </div>
+                                <div class="service-qty-controls">
+                                    <span class="qty-label">Video Inclusions:</span>
+                                    <select id="selectMiniVariant" class="input-field" style="width: auto; padding: 6px 12px; font-size: 13px;">
+                                        <option value="10 Photos + 2 Reels">10 Photos + 2 Reels</option>
+                                        <option value="10 Photos + 1 Highlight + 1 Reel">10 Photos + 1 Highlight + 1 Reel</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Container for user-added custom rows -->
+                            <div id="customItemsContainer"></div>
+
+                            <button type="button" class="btn-action btn-copy" id="btnAddCustomItem" style="align-self: flex-start; margin-top: 6px;">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                                Add Custom Service / Item
+                            </button>
+
+                        </div>
+
+                        <!-- Step 3: Complimentary Gifts Checklist -->
+                        <div class="complimentary-selector-box">
+                            <div class="complimentary-header">
+                                <h4>
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M20 12v10H4V12" />
+                                        <path d="M2 7h20v5H2z" />
+                                        <path d="M12 22V7" />
+                                        <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z" />
+                                        <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" />
+                                    </svg>
+                                    Complimentary Gifts (Included Free • ₹0)
+                                </h4>
+                                <button type="button" class="btn-action btn-copy" id="btnSelectAllComplimentary"
+                                    style="padding: 6px 14px; font-size: 12px;">
+                                    Deselect All
+                                </button>
+                            </div>
+
+                            <div class="freebies-grid">
+                                <label class="freebie-item">
+                                    <input type="checkbox" class="freebie-chk" data-key="pendrive" checked>
+                                    <span>High-Speed Pendrive</span>
+                                    <span class="freebie-tag">FREE</span>
+                                </label>
+                                <label class="freebie-item">
+                                    <input type="checkbox" class="freebie-chk" data-key="minibook" checked>
+                                    <span>Minibook Album</span>
+                                    <span class="freebie-tag">FREE</span>
+                                </label>
+                                <label class="freebie-item">
+                                    <input type="checkbox" class="freebie-chk" data-key="photoframe" checked>
+                                    <span>20×30 Photo Frame</span>
+                                    <span class="freebie-tag">FREE</span>
+                                </label>
+                                <label class="freebie-item">
+                                    <input type="checkbox" class="freebie-chk" data-key="calendar" checked>
+                                    <span>Table Calendar</span>
+                                    <span class="freebie-tag">FREE</span>
+                                </label>
+                                <label class="freebie-item">
+                                    <input type="checkbox" class="freebie-chk" data-key="bagbox" checked>
+                                    <span>Bag + Box (Premium)</span>
+                                    <span class="freebie-tag">FREE</span>
+                                </label>
+                                <label class="freebie-item">
+                                    <input type="checkbox" class="freebie-chk" data-key="reels" checked>
+                                    <span>2 Reel Videos</span>
+                                    <span class="freebie-tag">FREE</span>
+                                </label>
+                                <label class="freebie-item">
+                                    <input type="checkbox" class="freebie-chk" data-key="highlight" checked>
+                                    <span>Cinematic Highlight</span>
+                                    <span class="freebie-tag">FREE</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Discounts & Token Adjustments -->
+                        <div class="panel-title-wrap" style="margin-top: 36px;">
+                            <h3 class="panel-title">
+                                <span class="step-num">3</span> Discount & Advance Payment
+                            </h3>
+                        </div>
+
+                        <div class="form-row">
+                            <div>
+                                <label class="input-label" for="inputDiscount">Special Discount (₹)</label>
+                                <input type="number" id="inputDiscount" class="input-field" placeholder="0" min="0">
+                            </div>
+                            <div>
+                                <label class="input-label" for="inputAdvance">Advance / Booking Token (₹)</label>
+                                <input type="number" id="inputAdvance" class="input-field" placeholder="e.g. 5000" min="0">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Right: Sticky Live Summary & Actions -->
+                    <div class="sticky-summary">
+                        <div class="summary-card">
+                            <div class="summary-title">
+                                <span>Quotation Estimate</span>
+                                <span class="summary-live-dot">● Live Preview</span>
+                            </div>
+
+                            <div class="summary-items-list" id="summaryItemsList">
+                                <!-- Populated dynamically by quotation.js -->
+                            </div>
+
+                            <div class="summary-divider"></div>
+
+                            <div class="summary-math-grid">
+                                <div class="math-row">
+                                    <span>Subtotal</span>
+                                    <span class="amount" id="summarySubtotal">₹46,000</span>
+                                </div>
+                                <div class="math-row discount-row" id="summaryDiscountRow" style="display: none;">
+                                    <span>Discount</span>
+                                    <span class="amount" id="summaryDiscount">-₹0</span>
+                                </div>
+                            </div>
+
+                            <div class="total-grand-row">
+                                <span class="total-label">Total Amount:</span>
+                                <span class="total-val" id="summaryFinalTotal">₹46,000</span>
+                            </div>
+
+                            <div class="advance-calc-grid">
+                                <div class="advance-box">
+                                    <div class="sub-label">Advance Token</div>
+                                    <div class="sub-val" id="summaryAdvance">₹10,000</div>
+                                </div>
+                                <div class="advance-box due">
+                                    <div class="sub-label">Balance Due</div>
+                                    <div class="sub-val" id="summaryBalance">₹36,000</div>
+                                </div>
+                            </div>
+
+                            <div class="summary-actions-wrap">
+                                <button type="button" class="btn-generate-bill" id="btnScrollToBill">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    View Official Bill & Print
+                                </button>
+                                <a href="#" target="_blank" class="btn-whatsapp-quote" id="btnWhatsAppQuote">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                                    Send Quote via WhatsApp
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================= -->
+        <!-- OFFICIAL PRINTABLE BILL / INVOICE SECTION -->
+        <!-- ============================================================= -->
+        <section class="bill-section-wrapper" id="printableBill">
+            <div class="container">
+
+                <!-- Control Bar (Hidden when printing) -->
+                <div class="bill-control-bar">
+                    <h3>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                        Official Quotation & Bill Sheet
+                    </h3>
+
+                    <div class="control-buttons-group">
+                        <button type="button" class="btn-action btn-print" id="btnPrintBill">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                                <rect x="6" y="14" width="12" height="8"></rect>
+                            </svg>
+                            Print Bill / PDF
+                        </button>
+
+                        <button type="button" class="btn-action btn-copy" id="btnCopyQuote">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                            Copy Quote Text
+                        </button>
+
+                        <button type="button" class="btn-action btn-reset" id="btnResetQuote">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                                <path d="M3 3v5h5"></path>
+                            </svg>
+                            Reset
+                        </button>
+
+                        <button type="button" class="btn-action btn-reset" id="btnCloseBill" style="border-color: #bbb;">
+                            ✕ Hide Bill Sheet
+                        </button>
+                    </div>
+                </div>
+
+                <!-- THE PRINTABLE PAPER SHEET -->
+                <div class="printable-invoice-sheet" id="invoicePaper">
+                    <!-- Watermark -->
+                    <div class="invoice-watermark">TEJAS CANDID</div>
+
+                    <!-- Header -->
+                    <div class="invoice-header">
+                        <div class="studio-brand-col">
+                            <img src="assets/img/logo-max-black.png" alt="Tejas Candid Photography" class="studio-logo-img" onerror="this.src='assets/img/logo-mini-black.png'">
+                            <h2>TEJAS CANDID PHOTOGRAPHY</h2>
+                            <p class="studio-tagline">Capturing Unseen Moments • Wedding & Lifestyle Cinematography</p>
+                            <div class="studio-contacts-line">
+                                📞 <strong>Phone:</strong> +91 8459660254 &nbsp;|&nbsp; 🌐 <strong>Web:</strong> www.tejascandid.online<br>
+                                📸 <strong>Instagram:</strong> @tejascandid &nbsp;|&nbsp; 📍 <strong>Location:</strong> Maharashtra, India
+                            </div>
+                        </div>
+
+                        <div class="invoice-meta-col">
+                            <div class="doc-type-badge">ESTIMATE / QUOTATION</div>
+                            <div class="meta-info-line">Ref No: <strong id="billQuoteNo">—</strong></div>
+                            <div class="meta-info-line">Date: <strong id="billQuoteDate">—</strong></div>
+                            <div class="meta-info-line" style="font-size: 11px; color: #777;">Validity: <strong>15 Days</strong></div>
+                        </div>
+                    </div>
+
+                    <!-- Client Details & Event Details Grid -->
+                    <div class="invoice-details-grid">
+                        <div class="details-box">
+                            <h4>Quotation Prepared For</h4>
+                            <div class="client-name" id="billClientName">—</div>
+                            <p><strong>Contact:</strong> <span id="billClientPhone">—</span></p>
+                            <p><strong>Location / City:</strong> <span id="billEventVenue">—</span></p>
+                        </div>
+
+                        <div class="details-box">
+                            <h4>Event Particulars</h4>
+                            <p><strong>Occasion:</strong> <span id="billEventType">Wedding &amp; Reception</span></p>
+                            <p><strong>Scheduled Date:</strong> <span id="billEventDate">To be confirmed</span></p>
+                            <p><strong>Status:</strong> <span style="color: #0b7c29; font-weight: 700;">PROVISIONAL ESTIMATE</span></p>
+                        </div>
+                    </div>
+
+                    <!-- Itemized Invoice Table -->
+                    <div class="invoice-table-wrapper">
+                        <table class="invoice-table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" style="width: 50px;">Sr.</th>
+                                    <th>Service Description & Inclusions</th>
+                                    <th class="text-center" style="width: 120px;">Qty / Days</th>
+                                    <th class="text-right" style="width: 130px;">Rate (₹)</th>
+                                    <th class="text-right" style="width: 130px;">Amount (₹)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="billTableBody">
+                                <!-- Populated dynamically by quotation.js -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Complimentary Banner -->
+                    <div id="billComplimentaryContainer">
+                        <!-- Populated dynamically by quotation.js -->
+                    </div>
+
+                    <!-- Financials & Terms -->
+                    <div class="invoice-financials-grid">
+                        <div class="terms-notes-box">
+                            <h5>Booking Terms & Conditions:</h5>
+                            <ol>
+                                <li><strong>Advance Confirmation:</strong> 25-30% advance deposit is required to confirm and reserve date on calendar.</li>
+                                <li><strong>Payment Schedule:</strong> 50% payable on the event day, balance upon photobook design approval.</li>
+                                <li><strong>Deliverables:</strong> Raw data and high-res edited soft copies delivered within 15-20 working days. Printed album within 30-45 days following photo selection.</li>
+                                <li><strong>Travel & Accommodation:</strong> Outstation travel & lodging outside primary city to be provided or reimbursed by client.</li>
+                            </ol>
+                        </div>
+
+                        <div>
+                            <table class="bill-totals-table">
+                                <tr>
+                                    <td class="label-col">Subtotal:</td>
+                                    <td class="val-col" id="billSubtotal">₹46,000</td>
+                                </tr>
+                                <tr id="billDiscountRow" style="display: none;">
+                                    <td class="label-col" style="color: #c00;">Special Discount:</td>
+                                    <td class="val-col" style="color: #c00;" id="billDiscount">-₹0</td>
+                                </tr>
+                                <tr class="grand-row">
+                                    <td class="label-col" style="color: #000;">Total Package Amount:</td>
+                                    <td class="val-col" id="billFinalTotal">₹46,000</td>
+                                </tr>
+                                <tr>
+                                    <td class="label-col">Advance Payable / Paid:</td>
+                                    <td class="val-col" id="billAdvance">₹10,000</td>
+                                </tr>
+                                <tr class="balance-row">
+                                    <td class="label-col">Estimated Balance Due:</td>
+                                    <td class="val-col" id="billBalance">₹36,000</td>
+                                </tr>
+                            </table>
+
+                            <div class="amount-words-line">
+                                <strong>Amount in words:</strong> <span id="billAmountInWords">Rupees Forty-Six Thousand Only</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Signatures -->
+                    <div class="invoice-signatures">
+                        <div class="sig-box">
+                            <div class="sig-line"></div>
+                            <div class="sig-title">Client Acceptance Signature</div>
+                            <div class="sig-sub">Accepted & Agreed</div>
+                        </div>
+
+                        <div class="sig-box">
+                            <div class="stamp-seal-badge">
+                                TEJAS CANDID<br>VERIFIED
+                            </div>
+                            <div class="sig-line"></div>
+                            <div class="sig-title">Tejas Candid Photography</div>
+                            <div class="sig-sub">Authorized Signatory</div>
+                        </div>
+                    </div>
+
+                    <div class="invoice-final-foot">
+                        Thank you for considering Tejas Candid Photography to preserve your precious milestones! • Contact: +91 8459660254
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Unified Footer Section -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Left: CTA / Contact -->
+                <div class="footer-cta">
+                    <h2 class="footer-cta-title blur-reveal">Let's create something <br> extraordinary together</h2>
+                    <p class="footer-cta-desc blur-reveal">Book your session today</p>
+                    <a href="contact" class="btn btn-primary">Get in Touch</a>
+                </div>
+
+                <!-- Right: Brand & Links -->
+                <div class="footer-nav">
+                    <div class="footer-brand">
+                        <a href="/"><img style="filter: invert(1);" src="assets/img/logo-max.png" alt="Tejas Candid Photography"></a>
+                        <p>Capturing the unseen.</p>
+                    </div>
+
+                    <div class="footer-links-group">
+                        <div class="footer-col">
+                            <h4>Menu</h4>
+                            <ul>
+                                <li><a href="/">Home</a></li>
+                                <li><a href="service">Services</a></li>
+                                <li><a href="portfolio">Work</a></li>
+                                <li><a href="quotation">Quotation</a></li>
+                                <li><a href="contact">Contact</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-col">
+                            <h4>Social</h4>
+                            <ul>
+                                <li><a href="https://www.instagram.com/tejascandid/" target="_blank">Instagram</a></li>
+                                <li><a href="https://wa.me/918459660254" target="_blank">WhatsApp</a></li>
+                                <li><a href="tel:+918459660254">Direct Call</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Tejas Photography. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script>
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+            mouseMultiplier: 1,
+            smoothTouch: false,
+            touchMultiplier: 2,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+
+        requestAnimationFrame(raf);
+    </script>
+
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="assets/js/animations.js"></script>
+    <script src="assets/js/quotation.js"></script>
+
+</body>
+
+</html>
