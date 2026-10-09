@@ -901,6 +901,42 @@
     transform: scale(1.03);
 }
 
+.btn-whatsapp-action {
+    background: #25D366;
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(37, 211, 102, 0.28);
+}
+
+.btn-whatsapp-action:hover {
+    background: #1eb355;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+}
+
+.btn-image-action {
+    background: #0f172a;
+    color: #ffffff;
+}
+
+.btn-image-action:hover {
+    background: #1e293b;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+}
+
+.btn-outline-action {
+    background: #ffffff;
+    border-color: #cbd5e1;
+    color: #334155;
+}
+
+.btn-outline-action:hover {
+    background: #f1f5f9;
+    border-color: #94a3b8;
+    color: #0f172a;
+    transform: translateY(-1px);
+}
+
 .btn-copy {
     background: #f0f0f0;
     color: #222;
@@ -1275,22 +1311,19 @@
     color: #777;
 }
 
-.stamp-seal-badge {
-    display: inline-block;
-    border: 2px dashed #000;
-    border-radius: 50%;
-    width: 70px;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 9px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: #000;
+.stamp-seal-badge,
+.invoice-seal-img {
+    display: block;
+    width: 74px;
+    height: 74px;
+    object-fit: contain;
     margin: 0 auto 8px;
-    transform: rotate(-10deg);
+    transform: rotate(-6deg);
+    transition: transform 0.3s ease;
+}
+
+.invoice-seal-img:hover {
+    transform: rotate(0deg) scale(1.05);
 }
 
 .invoice-final-foot {
@@ -1306,57 +1339,83 @@
    PRINT MEDIA RULES (For Clean, Professional A4 Print & PDF)
    ========================================================================== */
 /* ==========================================================================
-   PRINT MEDIA RULES (Strict Single A4 Page Guarantee)
+   PRINT MEDIA RULES (Clean Single-Page with Multi-Page Flow Support)
    ========================================================================== */
 @media print {
     @page {
         size: A4 portrait;
-        margin: 6mm 8mm;
+        margin: 8mm 10mm;
     }
 
     html, body {
         height: auto !important;
         background: #ffffff !important;
         color: #000000 !important;
-        font-size: 11px !important;
-        line-height: 1.3 !important;
+        font-size: 11.5px !important;
+        line-height: 1.35 !important;
         margin: 0 !important;
         padding: 0 !important;
+        overflow: visible !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
     }
 
-    /* Hide website UI except the bill */
+    /* Hide website UI headers/footers/navbars/buttons */
+    .page-header,
     header,
+    .site-footer,
     footer,
+    nav,
     .navbar,
     .quotation-hero,
     .quote-mode-switcher,
+    .tab-pane,
+    #tab-fixed,
+    #tab-custom,
     .packages-grid,
     .quote-builder-grid,
     .bill-control-bar,
-    .testimonials-section,
-    .cta-section,
     .btn-chat,
     .hamburger,
     #navbar,
     #navPill,
     #quoteToast {
         display: none !important;
+        height: 0 !important;
+        max-height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        visibility: hidden !important;
     }
 
-    .container {
+    main.quotation-page-main {
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    .bill-section-wrapper {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        height: auto !important;
+    }
+
+    .bill-section-wrapper .container {
         max-width: 100% !important;
         padding: 0 !important;
         margin: 0 !important;
         width: 100% !important;
     }
 
-    .bill-section-wrapper {
-        display: block !important;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-
     .printable-invoice-sheet {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
         box-shadow: none !important;
         border: none !important;
         border-radius: 0 !important;
@@ -1364,16 +1423,19 @@
         margin: 0 !important;
         max-width: 100% !important;
         width: 100% !important;
-        page-break-inside: avoid !important;
-        break-inside: avoid !important;
+        background: #ffffff !important;
+    }
+
+    .printable-invoice-sheet * {
+        visibility: visible !important;
     }
 
     .invoice-watermark {
-        font-size: 70px !important;
-        opacity: 0.025 !important;
+        font-size: 75px !important;
+        opacity: 0.03 !important;
     }
 
-    /* Compact Header */
+    /* Proportional Clean Layout Fitting in 1 Single A4 Page */
     .invoice-header {
         padding-bottom: 8px !important;
         margin-bottom: 10px !important;
@@ -1382,7 +1444,7 @@
 
     .studio-logo-img {
         display: block !important;
-        max-height: 36px !important;
+        max-height: 38px !important;
         width: auto !important;
         margin-bottom: 4px !important;
         -webkit-print-color-adjust: exact;
@@ -1391,113 +1453,126 @@
 
     .studio-brand-col h2 {
         font-size: 18px !important;
+        font-weight: 800 !important;
         letter-spacing: -0.3px !important;
-        margin-bottom: 1px !important;
+        margin-bottom: 2px !important;
     }
 
     .studio-tagline {
-        font-size: 9px !important;
-        margin-bottom: 2px !important;
-        letter-spacing: 0.5px !important;
+        font-size: 9.5px !important;
+        margin-bottom: 3px !important;
+        letter-spacing: 0.2px !important;
+        color: #333 !important;
     }
 
     .studio-contacts-line {
         font-size: 9.5px !important;
         line-height: 1.3 !important;
+        color: #222 !important;
     }
 
     .doc-type-badge {
         font-size: 10px !important;
-        padding: 3px 10px !important;
+        font-weight: 700 !important;
+        padding: 4px 10px !important;
         margin-bottom: 4px !important;
+        background: #000 !important;
+        color: #fff !important;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
     }
 
     .meta-info-line {
-        font-size: 10px !important;
-        margin-bottom: 1px !important;
+        font-size: 10.5px !important;
+        margin-bottom: 2px !important;
     }
 
-    /* Compact Client Particulars Box */
+    /* Client Particulars Box */
     .invoice-details-grid {
         padding: 8px 12px !important;
         margin-bottom: 10px !important;
         border-radius: 6px !important;
         gap: 12px !important;
-        background: #fbfbfb !important;
-        border: 1px solid #ddd !important;
+        background: #f8f9fa !important;
+        border: 1px solid #cbd5e1 !important;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
     }
 
     .details-box h4 {
-        font-size: 8.5px !important;
-        margin-bottom: 2px !important;
+        font-size: 9px !important;
+        margin-bottom: 3px !important;
+        color: #64748b !important;
     }
 
     .details-box .client-name {
         font-size: 14px !important;
-        margin-bottom: 1px !important;
+        font-weight: 800 !important;
+        margin-bottom: 2px !important;
     }
 
     .details-box p {
-        font-size: 10px !important;
-        line-height: 1.25 !important;
-        margin-bottom: 1px !important;
+        font-size: 10.5px !important;
+        line-height: 1.3 !important;
+        margin-bottom: 2px !important;
     }
 
-    /* Compact Table */
+    /* Table */
     .invoice-table-wrapper {
-        margin-bottom: 8px !important;
+        margin-bottom: 10px !important;
     }
 
     .invoice-table {
-        font-size: 10.5px !important;
+        font-size: 11px !important;
+        width: 100% !important;
     }
 
     .invoice-table th {
-        background-color: #f0f0f0 !important;
-        padding: 5px 8px !important;
-        font-size: 9.5px !important;
-        border-top: 1px solid #000 !important;
-        border-bottom: 1px solid #000 !important;
+        background-color: #f1f5f9 !important;
+        padding: 6px 10px !important;
+        font-size: 10px !important;
+        font-weight: 700 !important;
+        border-top: 1.5px solid #000 !important;
+        border-bottom: 1.5px solid #000 !important;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
     }
 
     .invoice-table td {
-        padding: 5px 8px !important;
-        border-bottom: 1px solid #e0e0e0 !important;
+        padding: 6px 10px !important;
+        border-bottom: 1px solid #e2e8f0 !important;
         line-height: 1.25 !important;
+        font-size: 11px !important;
     }
 
     .invoice-item-title {
-        font-size: 11px !important;
+        font-size: 11.5px !important;
         margin-bottom: 1px !important;
         font-weight: 700 !important;
     }
 
     .invoice-item-sub {
-        font-size: 8.5px !important;
+        font-size: 9px !important;
         color: #555 !important;
         line-height: 1.2 !important;
     }
 
-    /* Compact Complimentary Banner */
+    /* Complimentary Gifts Banner */
     .bill-complimentary-banner {
-        padding: 6px 10px !important;
-        margin-bottom: 8px !important;
+        padding: 8px 12px !important;
+        margin-bottom: 10px !important;
         border-radius: 6px !important;
-        background: #f4fbf5 !important;
-        border: 1px solid #c2e5c9 !important;
+        background: #f0fdf4 !important;
+        border: 1px solid #bbf7d0 !important;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
     }
 
     .bill-complimentary-banner h5 {
-        font-size: 10px !important;
-        margin-bottom: 3px !important;
+        font-size: 10.5px !important;
+        font-weight: 700 !important;
+        color: #166534 !important;
+        margin-bottom: 4px !important;
     }
 
     .bill-perks-list {
@@ -1505,75 +1580,82 @@
     }
 
     .bill-perks-list li {
-        font-size: 9px !important;
-        line-height: 1.2 !important;
+        font-size: 9.5px !important;
+        line-height: 1.25 !important;
+        color: #15803d !important;
     }
 
-    /* Compact Financials & Terms */
+    /* Financials & Terms */
     .invoice-financials-grid {
         gap: 16px !important;
-        margin-bottom: 8px !important;
+        margin-bottom: 10px !important;
     }
 
     .terms-notes-box {
-        padding: 6px 10px !important;
+        padding: 8px 10px !important;
         border-radius: 6px !important;
         background: #fafafa !important;
-        border: 1px solid #e5e5e5 !important;
+        border: 1px solid #e2e8f0 !important;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
     }
 
     .terms-notes-box h5 {
-        font-size: 9px !important;
+        font-size: 9.5px !important;
+        font-weight: 700 !important;
         margin-bottom: 2px !important;
     }
 
     .terms-notes-box ol {
         padding-left: 12px !important;
-        font-size: 8px !important;
-        line-height: 1.25 !important;
+        font-size: 8.5px !important;
+        line-height: 1.3 !important;
+        color: #475569 !important;
     }
 
     .bill-totals-table td {
-        padding: 3px 6px !important;
-        font-size: 10.5px !important;
+        padding: 4px 6px !important;
+        font-size: 11px !important;
     }
 
     .bill-totals-table tr.grand-row td {
-        padding: 5px 6px !important;
-        font-size: 12.5px !important;
+        padding: 6px 8px !important;
+        font-size: 13.5px !important;
+        font-weight: 800 !important;
         border-top: 1.5px solid #000 !important;
         border-bottom: 1.5px solid #000 !important;
-        background: #fbfbfb !important;
+        background: #f8f9fa !important;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
     }
 
     .amount-words-line {
-        font-size: 8.5px !important;
+        font-size: 9px !important;
         margin-top: 2px !important;
+        color: #475569 !important;
     }
 
-    /* Compact Signatures */
+    /* Signatures */
     .invoice-signatures {
-        padding-top: 8px !important;
-        margin-top: 4px !important;
-        border-top: 1px solid #ddd !important;
+        padding-top: 10px !important;
+        margin-top: 6px !important;
+        border-top: 1px solid #e2e8f0 !important;
     }
 
     .sig-box {
         min-width: 140px !important;
     }
 
-    .stamp-seal-badge {
-        width: 38px !important;
-        height: 38px !important;
-        font-size: 5.5px !important;
+    .stamp-seal-badge,
+    .invoice-seal-img {
+        width: 44px !important;
+        height: 44px !important;
+        object-fit: contain !important;
+        display: block !important;
         margin: 0 auto 3px !important;
-        border: 1.5px dashed #000 !important;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
+        transform: rotate(-6deg) !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
     }
 
     .sig-line {
@@ -1581,17 +1663,20 @@
     }
 
     .sig-title {
-        font-size: 9.5px !important;
+        font-size: 10px !important;
+        font-weight: 700 !important;
     }
 
     .sig-sub {
-        font-size: 8px !important;
+        font-size: 8.5px !important;
+        color: #64748b !important;
     }
 
     .invoice-final-foot {
-        margin-top: 6px !important;
+        margin-top: 8px !important;
         padding-top: 4px !important;
-        font-size: 8px !important;
+        font-size: 8.5px !important;
+        color: #64748b !important;
     }
 
     /* Strict no break rule */

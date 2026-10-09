@@ -125,10 +125,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Bill & Action Buttons
     const billWrapper = document.getElementById('printableBill');
     const btnPrintBill = document.getElementById('btnPrintBill');
+    const btnDownloadPDF = document.getElementById('btnDownloadPDF');
+    const btnDownloadImage = document.getElementById('btnDownloadImage');
+    const btnShareWhatsApp = document.getElementById('btnShareWhatsApp');
+    const btnShareWhatsAppToolbar = document.getElementById('btnShareWhatsAppToolbar');
     const btnCopyQuote = document.getElementById('btnCopyQuote');
     const btnResetQuote = document.getElementById('btnResetQuote');
     const btnCloseBill = document.getElementById('btnCloseBill');
-    const btnWhatsAppQuote = document.getElementById('btnWhatsAppQuote');
     const btnScrollToBill = document.getElementById('btnScrollToBill');
 
     // -------------------------------------------------------------
@@ -273,7 +276,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Client Inputs
         if (inputClientName) inputClientName.addEventListener('input', e => { state.client.name = e.target.value.trim(); renderBill(); });
-        if (inputClientPhone) inputClientPhone.addEventListener('input', e => { state.client.phone = e.target.value.trim(); renderBill(); });
+        if (inputClientPhone) {
+            inputClientPhone.addEventListener('keydown', e => {
+                // Allow control keys (backspace, delete, tab, arrows, enter, copy/paste/select shortcuts)
+                if (['Backspace', 'Delete', 'Tab', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Enter'].includes(e.key) ||
+                    (e.ctrlKey || e.metaKey)) {
+                    return;
+                }
+                // Disallow anything other than digits 0-9
+                if (!/^[0-9]$/.test(e.key)) {
+                    e.preventDefault();
+                }
+            });
+
+            inputClientPhone.addEventListener('input', e => {
+                // Strip all non-digit characters and limit to 10 digits
+                const digits = e.target.value.replace(/\D/g, '').slice(0, 10);
+                e.target.value = digits;
+                state.client.phone = digits;
+                renderBill();
+            });
+
+            inputClientPhone.addEventListener('paste', e => {
+                e.preventDefault();
+                const paste = (e.clipboardData || window.clipboardData).getData('text');
+                const clean = paste.replace(/\D/g, '').slice(0, 10);
+                inputClientPhone.value = clean;
+                state.client.phone = clean;
+                renderBill();
+            });
+        }
         if (inputEventType) inputEventType.addEventListener('change', e => { state.client.eventType = e.target.value; renderBill(); });
         if (inputEventDate) {
             inputEventDate.addEventListener('change', e => {
@@ -434,7 +466,21 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Print Bill (with Client Info Validation)
+        // Share Clean Text Quote on WhatsApp (Sidebar button)
+        if (btnShareWhatsApp) {
+            btnShareWhatsApp.addEventListener('click', () => {
+                shareQuotationOnWhatsApp();
+            });
+        }
+
+        // Share Clean Text Quote on WhatsApp (Toolbar button)
+        if (btnShareWhatsAppToolbar) {
+            btnShareWhatsAppToolbar.addEventListener('click', () => {
+                shareQuotationOnWhatsApp();
+            });
+        }
+
+        // Print Bill / Native Save as PDF
         if (btnPrintBill) {
             btnPrintBill.addEventListener('click', () => {
                 if (!validateClientInfo()) {
@@ -445,22 +491,13 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Copy Text (with Client Info Validation)
+        // Copy Quote Text (with Client Info Validation)
         if (btnCopyQuote) {
             btnCopyQuote.addEventListener('click', () => {
                 if (!validateClientInfo()) {
                     return;
                 }
                 copyQuotationText();
-            });
-        }
-
-        // WhatsApp Share Button (with Client Info Validation)
-        if (btnWhatsAppQuote) {
-            btnWhatsAppQuote.addEventListener('click', (e) => {
-                if (!validateClientInfo()) {
-                    e.preventDefault();
-                }
             });
         }
 
@@ -972,64 +1009,317 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const perks = getActiveComplimentaryNames();
         let message = `*TEJAS CANDID PHOTOGRAPHY*\n`;
-        message += `_Artistic & Candid Wedding Photography_\n`;
-        message += `📞 +91 8459660254 | 🌐 www.tejascandid.online\n\n`;
+        message += `Artistic & Candid Wedding Photography\n`;
+        message += `Phone: +91 8459660254 | Web: www.tejascandid.online\n`;
+        message += `-------------------------------------\n`;
+        message += `*QUOTATION / ESTIMATE*\n`;
+        message += `-------------------------------------\n`;
+        message += `Client: ${state.client.name || 'Valued Client'}\n`;
+        message += `Event: ${state.client.eventType || 'Event'}\n`;
+        if (state.client.eventDate) message += `Date: ${formatDateDisplay(state.client.eventDate)}\n`;
+        if (state.client.venue) message += `Location: ${state.client.venue}\n`;
+        message += `Quote Ref: ${state.client.quoteNo}\n\n`;
 
-        message += `📋 *QUOTATION / ESTIMATE*\n`;
-        message += `━━━━━━━━━━━━━━━━━━━━━\n`;
-        message += `👤 *Client:* ${state.client.name || 'Valued Client'}\n`;
-        message += `🎉 *Event:* ${state.client.eventType || 'Event'}\n`;
-        if (state.client.eventDate) message += `📅 *Date:* ${formatDateDisplay(state.client.eventDate)}\n`;
-        if (state.client.venue) message += `📍 *Venue:* ${state.client.venue}\n`;
-        message += `🔢 *Quote No:* ${state.client.quoteNo}\n\n`;
-
-        message += `✨ *SELECTED SERVICES & RATES:*\n`;
+        message += `*SELECTED SERVICES & RATES:*\n`;
         if (totals.lineItems.length === 0) {
-            message += `_No services selected yet._\n`;
+            message += `No services selected yet.\n`;
         } else {
             totals.lineItems.forEach((item, idx) => {
-                message += `${idx + 1}. *${item.title}*\n   Duration/Qty: ${item.qty} → ₹${item.amount.toLocaleString('en-IN')}\n`;
+                message += `${idx + 1}. *${item.title}*\n   Qty: ${item.qty} - Rs. ${item.amount.toLocaleString('en-IN')}\n`;
             });
         }
         message += `\n`;
 
         if (perks.length > 0 && totals.lineItems.length > 0) {
-            message += `🎁 *COMPLIMENTARY GIFTS INCLUDED (FREE):*\n`;
+            message += `*COMPLIMENTARY GIFTS INCLUDED (FREE):*\n`;
             perks.forEach(p => {
-                message += `   ✓ ${p} (₹0 FREE)\n`;
+                message += `- ${p} (FREE)\n`;
             });
             message += `\n`;
         }
 
-        message += `━━━━━━━━━━━━━━━━━━━━━\n`;
-        message += `💵 *Subtotal:* ₹${totals.subtotal.toLocaleString('en-IN')}\n`;
+        message += `-------------------------------------\n`;
+        message += `Subtotal: Rs. ${totals.subtotal.toLocaleString('en-IN')}\n`;
         if (totals.discount > 0) {
-            message += `🏷️ *Special Discount:* -₹${totals.discount.toLocaleString('en-IN')}\n`;
+            message += `Special Discount: -Rs. ${totals.discount.toLocaleString('en-IN')}\n`;
         }
-        message += `🌟 *Total Package Amount:* ₹${totals.finalTotal.toLocaleString('en-IN')}\n`;
-        message += `💳 *Advance Payable:* ₹${totals.advance.toLocaleString('en-IN')}\n`;
-        message += `⏳ *Balance Due:* ₹${totals.balance.toLocaleString('en-IN')}\n`;
-        message += `━━━━━━━━━━━━━━━━━━━━━\n\n`;
+        message += `*Total Package Amount: Rs. ${totals.finalTotal.toLocaleString('en-IN')}*\n`;
+        message += `Advance Payable: Rs. ${totals.advance.toLocaleString('en-IN')}\n`;
+        message += `Estimated Balance Due: Rs. ${totals.balance.toLocaleString('en-IN')}\n`;
+        message += `-------------------------------------\n\n`;
 
-        message += `📌 *Terms:*\n`;
-        message += `• Advance booking required to block the date.\n`;
-        message += `• All raw & high-res edited files provided.\n\n`;
-        message += `Looking forward to capturing your beautiful memories! 🙏`;
+        message += `*Booking Terms:*\n`;
+        message += `- Advance booking required to reserve date on calendar.\n`;
+        message += `- 50% payable on event day, balance upon photobook design approval.\n`;
+        message += `- Raw data and high-res edited soft copies within 15-20 working days.\n\n`;
+        message += `Thank you for considering Tejas Candid Photography!`;
 
         return message;
     }
 
-    function updateWhatsAppLink(totals) {
-        if (!btnWhatsAppQuote) return;
-        const text = encodeURIComponent(generateQuoteMessageText(totals));
-        
+    function shareQuotationOnWhatsApp() {
+        if (!validateClientInfo()) return;
+
         let phoneParam = '918459660254';
         const clientPhoneDigits = (state.client.phone || '').replace(/\D/g, '');
         if (clientPhoneDigits.length >= 10) {
             phoneParam = clientPhoneDigits.startsWith('91') ? clientPhoneDigits : `91${clientPhoneDigits}`;
         }
 
-        btnWhatsAppQuote.href = `https://wa.me/${phoneParam}?text=${text}`;
+        const messageText = generateQuoteMessageText();
+        const encodedText = encodeURIComponent(messageText);
+
+        showToast('💬 Opening WhatsApp with clean quotation text...');
+        window.open(`https://wa.me/${phoneParam}?text=${encodedText}`, '_blank');
+    }
+
+    // -------------------------------------------------------------
+    // -------------------------------------------------------------
+    // -------------------------------------------------------------
+    // INVOICE IMAGE & 1-PAGE PDF GENERATION VIA HTML2CANVAS + JSPDF
+    // -------------------------------------------------------------
+
+    /**
+     * Renders #invoicePaper into a pixel-crisp canvas using html2canvas
+     */
+    function generateInvoiceCanvas(callback) {
+        if (!validateClientInfo()) return;
+
+        // Ensure bill sheet is rendered and visible in DOM
+        renderBill();
+        showBillSheet(false);
+
+        const element = document.getElementById('invoicePaper');
+        if (!element) return;
+
+        const quoteNo = state.client.quoteNo || 'Quote';
+        const clientSlug = (state.client.name || 'Client').replace(/[^a-zA-Z0-9]/g, '_');
+        const filename = `Tejas_Candid_${clientSlug}_${quoteNo}.png`;
+
+        showToast('⏳ Rendering high-definition invoice...');
+
+        if (typeof html2canvas === 'undefined') {
+            showToast('⚠️ Image renderer loading, please try again.');
+            return;
+        }
+
+        // Capture at 2x scale for crisp typography & branding
+        html2canvas(element, {
+            scale: 2,
+            useCORS: true,
+            allowTaint: true,
+            backgroundColor: '#ffffff',
+            logging: false,
+            windowWidth: 1200,
+            onclone: (clonedDoc) => {
+                const clonedWrapper = clonedDoc.getElementById('printableBill');
+                if (clonedWrapper) {
+                    clonedWrapper.style.display = 'block';
+                    clonedWrapper.style.visibility = 'visible';
+                    clonedWrapper.style.opacity = '1';
+                    clonedWrapper.classList.add('visible');
+                }
+                const clonedPaper = clonedDoc.getElementById('invoicePaper');
+                if (clonedPaper) {
+                    clonedPaper.style.display = 'block';
+                    clonedPaper.style.visibility = 'visible';
+                    clonedPaper.style.opacity = '1';
+                }
+            }
+        }).then(canvas => {
+            if (callback) callback(canvas, filename);
+        }).catch(err => {
+            console.error('Image capture error:', err);
+            showToast('⚠️ Renderer issue. Opening browser print view...');
+            window.print();
+        });
+    }
+
+    /**
+     * Direct PDF Generator using jsPDF (1 Page if fits, multi-page if large)
+     */
+    function generateAndDownloadPDF() {
+        if (!validateClientInfo()) return;
+
+        showToast('⏳ Generating PDF invoice...');
+
+        generateInvoiceCanvas((canvas, filename) => {
+            try {
+                const pdfFilename = filename.replace(/\.png$/i, '.pdf');
+                const imgData = canvas.toDataURL('image/jpeg', 0.98);
+
+                if (!window.jspdf || !window.jspdf.jsPDF) {
+                    showToast('⚠️ PDF engine loading. Opening print view...');
+                    window.print();
+                    return;
+                }
+
+                const { jsPDF } = window.jspdf;
+                const pdf = new jsPDF({
+                    orientation: 'portrait',
+                    unit: 'mm',
+                    format: 'a4'
+                });
+
+                const pageWidth = pdf.internal.pageSize.getWidth(); // 210mm
+                const pageHeight = pdf.internal.pageSize.getHeight(); // 297mm
+
+                const margin = 8; // 8mm margins
+                const imgWidth = pageWidth - (margin * 2); // 194mm
+                const imgHeight = (canvas.height * imgWidth) / canvas.width;
+                const pagePrintableHeight = pageHeight - (margin * 2);
+
+                if (imgHeight <= pagePrintableHeight) {
+                    // Standard package: strictly 1 single page!
+                    pdf.addImage(imgData, 'JPEG', margin, margin, imgWidth, imgHeight);
+                } else {
+                    // Extra large custom package: flows onto 2 pages without cutting off
+                    let heightLeft = imgHeight;
+                    let position = margin;
+
+                    pdf.addImage(imgData, 'JPEG', margin, position, imgWidth, imgHeight);
+                    heightLeft -= pagePrintableHeight;
+
+                    while (heightLeft > 0) {
+                        position = position - pagePrintableHeight;
+                        pdf.addPage();
+                        pdf.addImage(imgData, 'JPEG', margin, position, imgWidth, imgHeight);
+                        heightLeft -= pagePrintableHeight;
+                    }
+                }
+
+                pdf.save(pdfFilename);
+                showToast('✅ PDF downloaded successfully!');
+            } catch (err) {
+                console.error('jsPDF error:', err);
+                showToast('⚠️ Opening browser print view for PDF...');
+                window.print();
+            }
+        });
+    }
+
+    /**
+     * Direct 1-Click Download of Invoice as PNG Image
+     */
+    function downloadInvoiceImage() {
+        generateInvoiceCanvas((canvas, filename) => {
+            canvas.toBlob(blob => {
+                if (!blob) {
+                    showToast('❌ Unable to generate image blob.');
+                    return;
+                }
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                setTimeout(() => {
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                }, 150);
+                showToast('✅ Invoice image (.png) downloaded successfully!');
+            }, 'image/png');
+        });
+    }
+
+    /**
+     * Copies the invoice PNG image directly to clipboard
+     */
+    function copyInvoiceImageToClipboard() {
+        generateInvoiceCanvas((canvas, filename) => {
+            canvas.toBlob(blob => {
+                if (!blob) {
+                    showToast('❌ Unable to create image blob.');
+                    return;
+                }
+                if (navigator.clipboard && window.ClipboardItem) {
+                    navigator.clipboard.write([
+                        new ClipboardItem({ 'image/png': blob })
+                    ]).then(() => {
+                        showToast('📋 Invoice image copied! Paste with <strong>⌘V / Ctrl+V</strong> directly into WhatsApp.');
+                    }).catch(err => {
+                        console.warn('Clipboard write error:', err);
+                        showToast('⚠️ Clipboard not allowed. Downloading image instead...');
+                        downloadInvoiceImage();
+                    });
+                } else {
+                    showToast('⚠️ Clipboard not supported on this browser. Downloading image instead...');
+                    downloadInvoiceImage();
+                }
+            }, 'image/png');
+        });
+    }
+
+    /**
+     * Share Invoice Image via WhatsApp
+     */
+    function shareInvoiceImageViaWhatsApp() {
+        generateInvoiceCanvas((canvas, filename) => {
+            canvas.toBlob(blob => {
+                if (!blob) {
+                    showToast('❌ Unable to render image.');
+                    return;
+                }
+                const file = new File([blob], filename, { type: 'image/png' });
+
+                if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                    navigator.share({
+                        files: [file],
+                        title: 'Tejas Candid Photography Quotation',
+                        text: `Official Quotation for ${state.client.name} (${state.client.eventType || 'Event'})`
+                    }).then(() => {
+                        showToast('✅ Invoice image shared successfully!');
+                    }).catch(err => {
+                        if (err.name !== 'AbortError') {
+                            fallbackWhatsAppWithImage(blob, filename);
+                        }
+                    });
+                } else {
+                    fallbackWhatsAppWithImage(blob, filename);
+                }
+            }, 'image/png');
+        });
+    }
+
+    function fallbackWhatsAppWithImage(blob, filename) {
+        if (navigator.clipboard && window.ClipboardItem) {
+            try {
+                navigator.clipboard.write([
+                    new ClipboardItem({ 'image/png': blob })
+                ]).catch(() => {});
+            } catch (e) {}
+        }
+
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => {
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }, 150);
+
+        let phoneParam = '918459660254';
+        const clientPhoneDigits = (state.client.phone || '').replace(/\D/g, '');
+        if (clientPhoneDigits.length >= 10) {
+            phoneParam = clientPhoneDigits.startsWith('91') ? clientPhoneDigits : `91${clientPhoneDigits}`;
+        }
+
+        const messageText = generateQuoteMessageText();
+        const encodedText = encodeURIComponent(messageText);
+
+        showToast('📸 Image saved & copied! Opening WhatsApp chat...');
+
+        setTimeout(() => {
+            window.open(`https://wa.me/${phoneParam}?text=${encodedText}`, '_blank');
+        }, 400);
+    }
+
+    function updateWhatsAppLink(totals) {
+        // Placeholder for compatibility
     }
 
     function copyQuotationText() {
@@ -1145,29 +1435,31 @@ document.addEventListener('DOMContentLoaded', () => {
             toast.style.position = 'fixed';
             toast.style.bottom = '30px';
             toast.style.right = '30px';
-            toast.style.background = '#111';
+            toast.style.background = '#0f172a';
             toast.style.color = '#fff';
             toast.style.padding = '14px 24px';
             toast.style.borderRadius = '99px';
             toast.style.fontSize = '14px';
             toast.style.fontWeight = '500';
-            toast.style.boxShadow = '0 10px 30px rgba(0,0,0,0.3)';
+            toast.style.boxShadow = '0 12px 36px rgba(0,0,0,0.35)';
             toast.style.zIndex = '9999';
-            toast.style.transition = 'all 0.3s ease';
+            toast.style.transition = 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
             toast.style.display = 'flex';
             toast.style.alignItems = 'center';
-            toast.style.gap = '8px';
+            toast.style.gap = '10px';
+            toast.style.maxWidth = '90vw';
             document.body.appendChild(toast);
         }
 
-        toast.textContent = msg;
+        toast.innerHTML = msg;
         toast.style.opacity = '1';
         toast.style.transform = 'translateY(0)';
 
-        setTimeout(() => {
+        if (window._quoteToastTimeout) clearTimeout(window._quoteToastTimeout);
+        window._quoteToastTimeout = setTimeout(() => {
             toast.style.opacity = '0';
             toast.style.transform = 'translateY(10px)';
-        }, 4000);
+        }, 5000);
     }
 
     function numberToWords(amount) {
