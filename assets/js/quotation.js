@@ -7,11 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // PRICING CONSTANTS
     // -------------------------------------------------------------
     const RATES = {
-        traditional: 10000, // per day (Traditional Photography + Videography)
-        candid: 6000,       // per day (Candid Photography)
-        cinematic: 15000,   // per day (Cinematic Videography)
-        albumSheetRate: 500, // per sheet (Album: 500rs x 30sheet = 15000)
-        miniPackage: 9999    // 9999 package: 10 photo + 2 reel / 1 highlight + 1 reel
+        traditionalVideo: 10000, // per day (Traditional Videography)
+        traditionalPhoto: 6000,  // per day (Traditional Photography)
+        candid: 6000,            // per day (Candid Photography)
+        cinematic: 15000,        // per day (Cinematic Videography)
+        albumSheetRate: 600,     // per sheet (Album: ₹600 x 30 sheets = ₹18,000)
+        miniPackage: 9999        // Special Package: 10 photo + 2 reel / 1 highlight + 1 reel
     };
 
     // -------------------------------------------------------------
@@ -23,17 +24,23 @@ document.addEventListener('DOMContentLoaded', () => {
         client: {
             name: '',
             phone: '',
-            eventType: 'Wedding & Reception',
+            eventTypes: ['Wedding', 'Reception'],
+            eventTypeOther: '',
             eventDate: '',
             venue: '',
             quoteNo: generateQuoteNo(), // Timestamp-based unique reference
             quoteDate: getTodayFormatted()
         },
         services: {
-            traditional: {
+            traditionalVideo: {
                 selected: false,
                 days: 1,
-                rate: RATES.traditional
+                rate: RATES.traditionalVideo
+            },
+            traditionalPhoto: {
+                selected: false,
+                days: 1,
+                rate: RATES.traditionalPhoto
             },
             candid: {
                 selected: false,
@@ -80,17 +87,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // Client Input DOM
     const inputClientName = document.getElementById('inputClientName');
     const inputClientPhone = document.getElementById('inputClientPhone');
-    const inputEventType = document.getElementById('inputEventType');
+    const eventPillCheckboxes = document.querySelectorAll('.event-pill-checkbox');
+    const chkEventOther = document.getElementById('chkEventOther');
+    const eventTypeOtherWrap = document.getElementById('eventTypeOtherWrap');
+    const inputEventTypeOther = document.getElementById('inputEventTypeOther');
     const inputEventDate = document.getElementById('inputEventDate');
     const inputEventVenue = document.getElementById('inputEventVenue');
     const inputQuoteNo = document.getElementById('inputQuoteNo');
     const inputQuoteDate = document.getElementById('inputQuoteDate');
 
     // Service Controls DOM
-    const chkTraditional = document.getElementById('chkTraditional');
-    const qtyTraditional = document.getElementById('qtyTraditional');
-    const minusTraditional = document.getElementById('minusTraditional');
-    const plusTraditional = document.getElementById('plusTraditional');
+    const chkTraditionalVideo = document.getElementById('chkTraditionalVideo');
+    const qtyTraditionalVideo = document.getElementById('qtyTraditionalVideo');
+    const minusTraditionalVideo = document.getElementById('minusTraditionalVideo');
+    const plusTraditionalVideo = document.getElementById('plusTraditionalVideo');
+
+    const chkTraditionalPhoto = document.getElementById('chkTraditionalPhoto');
+    const qtyTraditionalPhoto = document.getElementById('qtyTraditionalPhoto');
+    const minusTraditionalPhoto = document.getElementById('minusTraditionalPhoto');
+    const plusTraditionalPhoto = document.getElementById('plusTraditionalPhoto');
 
     const chkCandid = document.getElementById('chkCandid');
     const qtyCandid = document.getElementById('qtyCandid');
@@ -141,6 +156,25 @@ document.addEventListener('DOMContentLoaded', () => {
     bindEvents();
     renderAll();
 
+    function getFormattedEventType() {
+        const selected = [];
+        eventPillCheckboxes.forEach(chk => {
+            if (chk.checked) {
+                if (chk.value === 'Other') {
+                    const custom = inputEventTypeOther ? inputEventTypeOther.value.trim() : (state.client.eventTypeOther || '').trim();
+                    if (custom) selected.push(custom);
+                    else selected.push('Special Event');
+                } else {
+                    selected.push(chk.value);
+                }
+            }
+        });
+        if (selected.length === 0) return 'Special Event';
+        if (selected.length === 1) return selected[0];
+        if (selected.length === 2) return `${selected[0]} & ${selected[1]}`;
+        return `${selected.slice(0, -1).join(', ')} & ${selected[selected.length - 1]}`;
+    }
+
     function initDefaults() {
         const today = new Date();
         const todayStr = today.toISOString().split('T')[0];
@@ -150,6 +184,8 @@ document.addEventListener('DOMContentLoaded', () => {
         state.client.name = '';
         state.client.phone = '';
         state.client.venue = '';
+        state.client.eventTypes = ['Wedding', 'Reception'];
+        state.client.eventTypeOther = '';
 
         if (inputQuoteDate) {
             inputQuoteDate.value = state.client.quoteDate;
@@ -162,7 +198,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (inputQuoteNo) inputQuoteNo.value = state.client.quoteNo;
         if (inputClientName) inputClientName.value = '';
         if (inputClientPhone) inputClientPhone.value = '';
-        if (inputEventType) inputEventType.value = 'Wedding & Reception';
+        
+        eventPillCheckboxes.forEach(chk => {
+            chk.checked = (chk.value === 'Wedding' || chk.value === 'Reception');
+        });
+        if (eventTypeOtherWrap) eventTypeOtherWrap.style.display = 'none';
+        if (inputEventTypeOther) inputEventTypeOther.value = '';
+
         if (inputEventVenue) inputEventVenue.value = '';
         if (inputDiscount) inputDiscount.value = '';
         if (inputAdvance) inputAdvance.value = '';
@@ -278,19 +320,16 @@ document.addEventListener('DOMContentLoaded', () => {
         if (inputClientName) inputClientName.addEventListener('input', e => { state.client.name = e.target.value.trim(); renderBill(); });
         if (inputClientPhone) {
             inputClientPhone.addEventListener('keydown', e => {
-                // Allow control keys (backspace, delete, tab, arrows, enter, copy/paste/select shortcuts)
                 if (['Backspace', 'Delete', 'Tab', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Enter'].includes(e.key) ||
                     (e.ctrlKey || e.metaKey)) {
                     return;
                 }
-                // Disallow anything other than digits 0-9
                 if (!/^[0-9]$/.test(e.key)) {
                     e.preventDefault();
                 }
             });
 
             inputClientPhone.addEventListener('input', e => {
-                // Strip all non-digit characters and limit to 10 digits
                 const digits = e.target.value.replace(/\D/g, '').slice(0, 10);
                 e.target.value = digits;
                 state.client.phone = digits;
@@ -306,7 +345,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderBill();
             });
         }
-        if (inputEventType) inputEventType.addEventListener('change', e => { state.client.eventType = e.target.value; renderBill(); });
+
+        // Event Types Multi-Select Pills & Custom Other input
+        eventPillCheckboxes.forEach(chk => {
+            chk.addEventListener('change', () => {
+                if (chk === chkEventOther) {
+                    if (eventTypeOtherWrap) {
+                        eventTypeOtherWrap.style.display = chk.checked ? 'block' : 'none';
+                        if (chk.checked && inputEventTypeOther) {
+                            inputEventTypeOther.focus();
+                        }
+                    }
+                }
+                renderBill();
+            });
+        });
+
+        if (inputEventTypeOther) {
+            inputEventTypeOther.addEventListener('input', e => {
+                state.client.eventTypeOther = e.target.value;
+                renderBill();
+            });
+        }
+
         if (inputEventDate) {
             inputEventDate.addEventListener('change', e => {
                 const todayStr = getTodayFormatted();
@@ -332,24 +393,41 @@ document.addEventListener('DOMContentLoaded', () => {
         if (inputQuoteNo) inputQuoteNo.addEventListener('input', e => { state.client.quoteNo = e.target.value.trim(); renderBill(); });
         if (inputQuoteDate) inputQuoteDate.addEventListener('input', e => { state.client.quoteDate = e.target.value; renderBill(); });
 
-        // Traditional Service
-        if (chkTraditional) chkTraditional.addEventListener('change', e => {
-            state.services.traditional.selected = e.target.checked;
-            toggleServiceCardActive('serviceCardTraditional', e.target.checked);
+        // Traditional Videography Service (10,000 / day)
+        if (chkTraditionalVideo) chkTraditionalVideo.addEventListener('change', e => {
+            state.services.traditionalVideo.selected = e.target.checked;
+            toggleServiceCardActive('serviceCardTraditionalVideo', e.target.checked);
             renderAll();
         });
-        if (minusTraditional) minusTraditional.addEventListener('click', () => {
-            if (state.services.traditional.days > 1) {
-                state.services.traditional.days--;
+        if (minusTraditionalVideo) minusTraditionalVideo.addEventListener('click', () => {
+            if (state.services.traditionalVideo.days > 1) {
+                state.services.traditionalVideo.days--;
                 renderAll();
             }
         });
-        if (plusTraditional) plusTraditional.addEventListener('click', () => {
-            state.services.traditional.days++;
+        if (plusTraditionalVideo) plusTraditionalVideo.addEventListener('click', () => {
+            state.services.traditionalVideo.days++;
             renderAll();
         });
 
-        // Candid Service
+        // Traditional Photography Service (6,000 / day)
+        if (chkTraditionalPhoto) chkTraditionalPhoto.addEventListener('change', e => {
+            state.services.traditionalPhoto.selected = e.target.checked;
+            toggleServiceCardActive('serviceCardTraditionalPhoto', e.target.checked);
+            renderAll();
+        });
+        if (minusTraditionalPhoto) minusTraditionalPhoto.addEventListener('click', () => {
+            if (state.services.traditionalPhoto.days > 1) {
+                state.services.traditionalPhoto.days--;
+                renderAll();
+            }
+        });
+        if (plusTraditionalPhoto) plusTraditionalPhoto.addEventListener('click', () => {
+            state.services.traditionalPhoto.days++;
+            renderAll();
+        });
+
+        // Candid Service (6,000 / day)
         if (chkCandid) chkCandid.addEventListener('change', e => {
             state.services.candid.selected = e.target.checked;
             toggleServiceCardActive('serviceCardCandid', e.target.checked);
@@ -366,7 +444,7 @@ document.addEventListener('DOMContentLoaded', () => {
             renderAll();
         });
 
-        // Cinematic Service
+        // Cinematic Service (15,000 / day)
         if (chkCinematic) chkCinematic.addEventListener('change', e => {
             state.services.cinematic.selected = e.target.checked;
             toggleServiceCardActive('serviceCardCinematic', e.target.checked);
@@ -383,7 +461,7 @@ document.addEventListener('DOMContentLoaded', () => {
             renderAll();
         });
 
-        // Album Service
+        // Album Service (600 / sheet)
         if (chkAlbum) chkAlbum.addEventListener('change', e => {
             state.services.album.selected = e.target.checked;
             toggleServiceCardActive('serviceCardAlbum', e.target.checked);
@@ -405,22 +483,42 @@ document.addEventListener('DOMContentLoaded', () => {
             renderAll();
         });
 
-        // Complimentary Checkboxes
+        // Tooltip button interaction (prevent toggling checkbox)
+        document.querySelectorAll('.info-tooltip-btn').forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.preventDefault();
+                e.stopPropagation();
+            });
+        });
+
+        // Complimentary Checkboxes (manual toggle)
         complimentaryCheckboxes.forEach(chk => {
             chk.addEventListener('change', () => {
                 const key = chk.dataset.key;
-                if (key) state.complimentary[key] = chk.checked;
+                if (key) {
+                    state.complimentary[key] = chk.checked;
+                    if (!state.complimentaryManuallyToggled) state.complimentaryManuallyToggled = {};
+                    state.complimentaryManuallyToggled[key] = !chk.checked;
+                }
                 renderAll();
             });
         });
 
         if (btnSelectAllComplimentary) {
             btnSelectAllComplimentary.addEventListener('click', () => {
-                const allSelected = Object.values(state.complimentary).every(v => v);
-                const nextState = !allSelected;
-                Object.keys(state.complimentary).forEach(k => state.complimentary[k] = nextState);
-                complimentaryCheckboxes.forEach(chk => chk.checked = nextState);
-                btnSelectAllComplimentary.textContent = nextState ? 'Deselect All' : 'Select All';
+                const totals = calculateTotals();
+                const eligible = getEligibleComplimentaryKeys(totals.subtotal, !!state.services.miniEvent.selected);
+                const eligibleKeys = Object.keys(eligible).filter(k => eligible[k]);
+                if (eligibleKeys.length === 0) return;
+
+                const allEligibleChecked = eligibleKeys.every(k => state.complimentary[k]);
+                const nextVal = !allEligibleChecked;
+
+                if (!state.complimentaryManuallyToggled) state.complimentaryManuallyToggled = {};
+                eligibleKeys.forEach(k => {
+                    state.complimentary[k] = nextVal;
+                    state.complimentaryManuallyToggled[k] = !nextVal;
+                });
                 renderAll();
             });
         }
@@ -520,13 +618,130 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // -------------------------------------------------------------
+    // TIER-BASED COMPLIMENTARY GIFTS LOGIC
+    // -------------------------------------------------------------
+    // Tier Rules:
+    // - ₹25,000+: Pendrive + Minibook Album + Table Calendar
+    // - ₹45,000+: Pendrive + Minibook Album + Table Calendar + (Bag + Box)
+    // - ₹70,000+: All 7 Gifts Open (Photo Frame, 2 Reels, Cinematic Highlight)
+    // - Mini Package (₹9,999): Pendrive + 2 Reels + Highlight
+    function getEligibleComplimentaryKeys(subtotal, isMini) {
+        const eligible = {
+            pendrive: false,
+            minibook: false,
+            calendar: false,
+            bagbox: false,
+            photoframe: false,
+            reels: false,
+            highlight: false
+        };
+
+        if (isMini) {
+            eligible.pendrive = true;
+            eligible.reels = true;
+            eligible.highlight = true;
+        }
+
+        if (subtotal >= 70000) {
+            // ₹70,000 and above: Everything is open
+            Object.keys(eligible).forEach(k => eligible[k] = true);
+        } else if (subtotal >= 45000) {
+            // ₹45,000 and above: pendrive + minibook + calendar + (bag + box)
+            eligible.pendrive = true;
+            eligible.minibook = true;
+            eligible.calendar = true;
+            eligible.bagbox = true;
+        } else if (subtotal >= 25000) {
+            // ₹25,000 and above: pendrive + minibook + calendar
+            eligible.pendrive = true;
+            eligible.minibook = true;
+            eligible.calendar = true;
+        }
+
+        return eligible;
+    }
+
+    function updateComplimentaryTiers(subtotal) {
+        const isMini = !!state.services.miniEvent.selected;
+        const eligible = getEligibleComplimentaryKeys(subtotal, isMini);
+        const banner = document.getElementById('complimentaryTierBanner');
+
+        // Update banner text based on current subtotal
+        if (banner) {
+            if (subtotal >= 70000) {
+                banner.className = 'complimentary-tier-banner unlocked-all';
+                banner.innerHTML = '💎 <strong>VIP Tier (₹70k+):</strong> All 7 Luxury Complimentary Perks Unlocked (FREE • ₹0)!';
+            } else if (subtotal >= 45000) {
+                const diff = 70000 - subtotal;
+                banner.className = 'complimentary-tier-banner';
+                banner.innerHTML = `🌟 <strong>Tier 2 (₹45k+):</strong> Pendrive, Minibook, Calendar &amp; Bag+Box Included! <span style="font-size: 11.5px; opacity: 0.9; margin-left: auto;">(Add ₹${diff.toLocaleString('en-IN')} for 20×30 Frame &amp; Reels)</span>`;
+            } else if (subtotal >= 25000) {
+                const diff = 45000 - subtotal;
+                banner.className = 'complimentary-tier-banner';
+                banner.innerHTML = `✨ <strong>Tier 1 (₹25k+):</strong> Pendrive, Minibook &amp; Calendar Included! <span style="font-size: 11.5px; opacity: 0.9; margin-left: auto;">(Add ₹${diff.toLocaleString('en-IN')} for Bag + Box)</span>`;
+            } else {
+                banner.className = 'complimentary-tier-banner';
+                if (isMini) {
+                    banner.innerHTML = '✨ <strong>Starter Package Perks:</strong> High-Speed Pendrive, 2 Social Reels &amp; Highlight Teaser Included!';
+                } else {
+                    const diff = Math.max(0, 25000 - subtotal);
+                    banner.innerHTML = `🎁 <strong>Unlock Gifts:</strong> Add services worth ₹${diff.toLocaleString('en-IN')} more to unlock Free Pendrive + Minibook + Table Calendar!`;
+                }
+            }
+        }
+
+        // Update each item DOM and sync state
+        complimentaryCheckboxes.forEach(chk => {
+            const key = chk.dataset.key;
+            const item = document.getElementById(`freebieItem_${key}`);
+            const tag = document.getElementById(`freebieTag_${key}`);
+            const isEligible = !!eligible[key];
+
+            if (isEligible) {
+                chk.disabled = false;
+                if (item) item.classList.remove('locked');
+                
+                // If previously locked and not explicitly unchecked by user, auto-select
+                if (state.complimentary[key] === false && !state.complimentaryManuallyToggled?.[key]) {
+                    state.complimentary[key] = true;
+                }
+                chk.checked = !!state.complimentary[key];
+                if (tag) {
+                    tag.textContent = 'FREE';
+                    tag.className = 'freebie-tag tier-unlocked';
+                }
+            } else {
+                chk.disabled = true;
+                chk.checked = false;
+                state.complimentary[key] = false;
+                if (item) item.classList.add('locked');
+                if (tag) {
+                    if (key === 'bagbox') tag.textContent = '₹45k+';
+                    else if (key === 'photoframe' || key === 'reels' || key === 'highlight') tag.textContent = '₹70k+';
+                    else tag.textContent = '₹25k+';
+                    tag.className = 'freebie-tag locked';
+                }
+            }
+        });
+
+        // Update "Select All" button text
+        if (btnSelectAllComplimentary) {
+            const eligibleKeys = Object.keys(eligible).filter(k => eligible[k]);
+            const allEligibleChecked = eligibleKeys.length > 0 && eligibleKeys.every(k => state.complimentary[k]);
+            btnSelectAllComplimentary.textContent = allEligibleChecked ? 'Deselect All' : 'Select All';
+        }
+    }
+
+    // -------------------------------------------------------------
     // APPLY FIXED PACKAGES
     // -------------------------------------------------------------
     function applyFixedPackage(pkgKey) {
         state.selectedFixedPackage = pkgKey;
+        if (!state.complimentaryManuallyToggled) state.complimentaryManuallyToggled = {};
 
         if (pkgKey === 'mini-9999') {
-            state.services.traditional.selected = false;
+            state.services.traditionalVideo.selected = false;
+            state.services.traditionalPhoto.selected = false;
             state.services.candid.selected = false;
             state.services.cinematic.selected = false;
             state.services.album.selected = false;
@@ -544,8 +759,11 @@ document.addEventListener('DOMContentLoaded', () => {
             state.financials.advance = 3000;
             state.financials.discount = 0;
         } else if (pkgKey === 'wedding-grand') {
-            state.services.traditional.selected = true;
-            state.services.traditional.days = 1;
+            state.services.traditionalVideo.selected = true;
+            state.services.traditionalVideo.days = 1;
+
+            state.services.traditionalPhoto.selected = true;
+            state.services.traditionalPhoto.days = 1;
 
             state.services.candid.selected = true;
             state.services.candid.days = 1;
@@ -558,21 +776,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             state.services.miniEvent.selected = false;
 
-            Object.keys(state.complimentary).forEach(k => state.complimentary[k] = true);
-
-            state.financials.advance = 10000;
-            state.financials.discount = 0;
-        } else if (pkgKey === 'traditional-classic') {
-            state.services.traditional.selected = true;
-            state.services.traditional.days = 1;
-
-            state.services.album.selected = true;
-            state.services.album.sheets = 30;
-
-            state.services.candid.selected = false;
-            state.services.cinematic.selected = false;
-            state.services.miniEvent.selected = false;
-
+            // ₹55k package falls under ₹45k+ tier (Pendrive, Minibook, Calendar, Bag+Box)
             state.complimentary.pendrive = true;
             state.complimentary.minibook = true;
             state.complimentary.calendar = true;
@@ -581,9 +785,37 @@ document.addEventListener('DOMContentLoaded', () => {
             state.complimentary.reels = false;
             state.complimentary.highlight = false;
 
+            state.financials.advance = 10000;
+            state.financials.discount = 0;
+        } else if (pkgKey === 'traditional-classic') {
+            state.services.traditionalVideo.selected = true;
+            state.services.traditionalVideo.days = 1;
+
+            state.services.traditionalPhoto.selected = true;
+            state.services.traditionalPhoto.days = 1;
+
+            state.services.album.selected = true;
+            state.services.album.sheets = 30;
+
+            state.services.candid.selected = false;
+            state.services.cinematic.selected = false;
+            state.services.miniEvent.selected = false;
+
+            // ₹34k package falls under ₹25k+ tier (Pendrive, Minibook, Calendar)
+            state.complimentary.pendrive = true;
+            state.complimentary.minibook = true;
+            state.complimentary.calendar = true;
+            state.complimentary.bagbox = false;
+            state.complimentary.photoframe = false;
+            state.complimentary.reels = false;
+            state.complimentary.highlight = false;
+
             state.financials.advance = 5000;
             state.financials.discount = 0;
         }
+
+        // Reset manual toggles so default unlocked items show
+        state.complimentaryManuallyToggled = {};
 
         // 1. Sync controls & recalculate
         syncControlsFromState();
@@ -608,9 +840,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function syncControlsFromState() {
-        if (chkTraditional) chkTraditional.checked = state.services.traditional.selected;
-        if (qtyTraditional) qtyTraditional.textContent = `${state.services.traditional.days} Day${state.services.traditional.days > 1 ? 's' : ''}`;
-        toggleServiceCardActive('serviceCardTraditional', state.services.traditional.selected);
+        if (chkTraditionalVideo) chkTraditionalVideo.checked = state.services.traditionalVideo.selected;
+        if (qtyTraditionalVideo) qtyTraditionalVideo.textContent = `${state.services.traditionalVideo.days} Day${state.services.traditionalVideo.days > 1 ? 's' : ''}`;
+        toggleServiceCardActive('serviceCardTraditionalVideo', state.services.traditionalVideo.selected);
+
+        if (chkTraditionalPhoto) chkTraditionalPhoto.checked = state.services.traditionalPhoto.selected;
+        if (qtyTraditionalPhoto) qtyTraditionalPhoto.textContent = `${state.services.traditionalPhoto.days} Day${state.services.traditionalPhoto.days > 1 ? 's' : ''}`;
+        toggleServiceCardActive('serviceCardTraditionalPhoto', state.services.traditionalPhoto.selected);
 
         if (chkCandid) chkCandid.checked = state.services.candid.selected;
         if (qtyCandid) qtyCandid.textContent = `${state.services.candid.days} Day${state.services.candid.days > 1 ? 's' : ''}`;
@@ -645,20 +881,33 @@ document.addEventListener('DOMContentLoaded', () => {
         let subtotal = 0;
         const lineItems = [];
 
-        // 1. Traditional
-        if (state.services.traditional.selected) {
-            const amt = state.services.traditional.days * state.services.traditional.rate;
+        // 1. Traditional Videography (10,000 / day)
+        if (state.services.traditionalVideo.selected) {
+            const amt = state.services.traditionalVideo.days * state.services.traditionalVideo.rate;
             subtotal += amt;
             lineItems.push({
-                title: 'Traditional Photography + Videography',
-                sub: 'Full day traditional multi-angle video & photo coverage with lighting setup',
-                qty: `${state.services.traditional.days} Day(s)`,
-                rate: state.services.traditional.rate,
+                title: 'Traditional Videography',
+                sub: 'Full HD / 4K multi-angle coverage for rituals, stage & family ceremony documentation',
+                qty: `${state.services.traditionalVideo.days} Day(s)`,
+                rate: state.services.traditionalVideo.rate,
                 amount: amt
             });
         }
 
-        // 2. Candid
+        // 2. Traditional Photography (6,000 / day)
+        if (state.services.traditionalPhoto.selected) {
+            const amt = state.services.traditionalPhoto.days * state.services.traditionalPhoto.rate;
+            subtotal += amt;
+            lineItems.push({
+                title: 'Traditional Photography',
+                sub: 'Complete stage, rituals, group portraits, and guest coverage with lighting setup',
+                qty: `${state.services.traditionalPhoto.days} Day(s)`,
+                rate: state.services.traditionalPhoto.rate,
+                amount: amt
+            });
+        }
+
+        // 3. Candid Photography (6,000 / day)
         if (state.services.candid.selected) {
             const amt = state.services.candid.days * state.services.candid.rate;
             subtotal += amt;
@@ -671,7 +920,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // 3. Cinematic Videography
+        // 4. Cinematic Videography (15,000 / day)
         if (state.services.cinematic.selected) {
             const amt = state.services.cinematic.days * state.services.cinematic.rate;
             subtotal += amt;
@@ -684,7 +933,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // 4. Album
+        // 5. Album (600 / sheet)
         if (state.services.album.selected) {
             const amt = state.services.album.sheets * state.services.album.ratePerSheet;
             subtotal += amt;
@@ -697,7 +946,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // 5. Mini Event (9999 package)
+        // 6. Mini Event (9999 package)
         if (state.services.miniEvent.selected) {
             subtotal += RATES.miniPackage;
             lineItems.push({
@@ -709,7 +958,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // 6. Custom items
+        // 7. Custom items
         state.customItems.forEach(item => {
             const amt = (item.rate || 0) * (item.qty || 1);
             subtotal += amt;
@@ -741,7 +990,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const totals = calculateTotals();
 
         // Update inputs & display counters
-        if (qtyTraditional) qtyTraditional.textContent = `${state.services.traditional.days} Day${state.services.traditional.days > 1 ? 's' : ''}`;
+        if (qtyTraditionalVideo) qtyTraditionalVideo.textContent = `${state.services.traditionalVideo.days} Day${state.services.traditionalVideo.days > 1 ? 's' : ''}`;
+        if (qtyTraditionalPhoto) qtyTraditionalPhoto.textContent = `${state.services.traditionalPhoto.days} Day${state.services.traditionalPhoto.days > 1 ? 's' : ''}`;
         if (qtyCandid) qtyCandid.textContent = `${state.services.candid.days} Day${state.services.candid.days > 1 ? 's' : ''}`;
         if (qtyCinematic) qtyCinematic.textContent = `${state.services.cinematic.days} Day${state.services.cinematic.days > 1 ? 's' : ''}`;
         
@@ -750,6 +1000,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const albumCost = state.services.album.sheets * state.services.album.ratePerSheet;
             displayAlbumTotal.textContent = `₹${albumCost.toLocaleString('en-IN')}`;
         }
+
+        // Update Dynamic Complimentary Gifts Tiers & Unlock Badges
+        updateComplimentaryTiers(totals.subtotal);
 
         // Update Live Sticky Summary Card
         renderSideSummary(totals);
@@ -825,7 +1078,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Client details - show clean fallback if empty
         setText('billClientName', state.client.name || '—');
         setText('billClientPhone', state.client.phone || '—');
-        setText('billEventType', state.client.eventType || '—');
+        setText('billEventType', getFormattedEventType());
         setText('billEventDate', state.client.eventDate ? formatDateDisplay(state.client.eventDate) : 'To be confirmed');
         setText('billEventVenue', state.client.venue || '—');
 
@@ -927,9 +1180,12 @@ document.addEventListener('DOMContentLoaded', () => {
             highlight: 'Cinematic Teaser / Highlight Film'
         };
 
+        const totals = calculateTotals();
+        const eligible = getEligibleComplimentaryKeys(totals.subtotal, !!state.services.miniEvent.selected);
+
         const active = [];
         for (const [key, isChecked] of Object.entries(state.complimentary)) {
-            if (isChecked && labels[key]) {
+            if (isChecked && eligible[key] && labels[key]) {
                 active.push(labels[key]);
             }
         }
@@ -1015,7 +1271,7 @@ document.addEventListener('DOMContentLoaded', () => {
         message += `*QUOTATION / ESTIMATE*\n`;
         message += `-------------------------------------\n`;
         message += `Client: ${state.client.name || 'Valued Client'}\n`;
-        message += `Event: ${state.client.eventType || 'Event'}\n`;
+        message += `Event: ${getFormattedEventType()}\n`;
         if (state.client.eventDate) message += `Date: ${formatDateDisplay(state.client.eventDate)}\n`;
         if (state.client.venue) message += `Location: ${state.client.venue}\n`;
         message += `Quote Ref: ${state.client.quoteNo}\n\n`;
@@ -1337,12 +1593,16 @@ document.addEventListener('DOMContentLoaded', () => {
     function resetToDefaults() {
         state.client.name = '';
         state.client.phone = '';
-        state.client.eventType = 'Wedding & Reception';
+        state.client.eventTypes = ['Wedding', 'Reception'];
+        state.client.eventTypeOther = '';
         state.client.venue = '';
         state.client.quoteNo = generateQuoteNo();
 
-        state.services.traditional.selected = false;
-        state.services.traditional.days = 1;
+        state.services.traditionalVideo.selected = false;
+        state.services.traditionalVideo.days = 1;
+
+        state.services.traditionalPhoto.selected = false;
+        state.services.traditionalPhoto.days = 1;
 
         state.services.candid.selected = false;
         state.services.candid.days = 1;
@@ -1355,8 +1615,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         state.services.miniEvent.selected = false;
         state.customItems = [];
+        state.complimentaryManuallyToggled = {};
 
-        Object.keys(state.complimentary).forEach(k => state.complimentary[k] = true);
+        Object.keys(state.complimentary).forEach(k => state.complimentary[k] = false);
 
         state.financials.discount = 0;
         state.financials.advance = 0;
